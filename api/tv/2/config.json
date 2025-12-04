@@ -1,0 +1,121 @@
+{
+  "brand": "Viasanto TV 2",
+  "mode": "menu",
+  "refreshSeconds": 120,
+  "transitionMs": 700,
+  "background": "#060912",
+  "accent": "#47d3ff",
+  "textColor": "#f6f8fb",
+  "video": {
+    "playlist": []
+  },
+  "menu": {
+    "title": "Cafetería y pastelería",
+    "subtitle": "Preparaciones listas para llevar",
+    "highlight": "Servicio al paso",
+    "footerNote": "Incluye azúcar rubia y stevia. Pregunta por sin gluten.",
+    "sections": [
+      {
+        "name": "Bebidas calientes",
+        "items": [
+          {
+            "name": "Americano",
+            "price": "$2.200",
+            "description": "Espresso + agua filtrada"
+          },
+          {
+            "name": "Mocha",
+            "price": "$3.600",
+            "description": "Cacao belga, espresso doble, leche vaporizada"
+          },
+          {
+            "name": "Flat White",
+            "price": "$3.200",
+            "description": "Suave, con doble shot"
+          }
+        ]
+      },
+      {
+        "name": "Fríos y refrescantes",
+        "items": [
+          {
+            "name": "Cold Brew Naranja",
+            "price": "$3.500",
+            "description": "24h de macerado, notas cítricas"
+          },
+          {
+            "name": "Latte Frío",
+            "price": "$3.300",
+            "description": "Leche fría, espresso doble, opción sin lactosa"
+          },
+          {
+            "name": "Té helado",
+            "price": "$2.900",
+            "description": "Té negro, limón y syrup casero"
+          }
+        ]
+      },
+      {
+        "name": "Dulces del día",
+        "items": [
+          {
+            "name": "Brownie nuez",
+            "price": "$2.500",
+            "description": "Cacao 70%, centro húmedo"
+          },
+          {
+            "name": "Cheesecake frutos rojos",
+            "price": "$3.400",
+            "description": "Base crocante, coulis de berries"
+          }
+        ]
+      }
+    ]
+  },
+  "carousel": {
+    "headline": "Sabores de hoy",
+    "ribbon": "En vitrina",
+    "speedSeconds": 28,
+    "items": [
+      {
+        "title": "Focaccia mortadela",
+        "price": "$5.400",
+        "image": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMjAwJyBoZWlnaHQ9JzgwMCcgdmlld0JveD0nMCAwIDEyMDAgODAwJz4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0nZycgeDE9JzAlJyB5MT0nMCUnIHgyPScxMDAlJyB5Mj0nMTAwJSc+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9JyM0N2QzZmYnIG9mZnNldD0nMCUnLz4KICAgICAgPHN0b3Agc3RvcC1jb2xvcj0nIzZlZjNjNScgb2Zmc2V0PScxMDAlJy8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0nMTIwMCcgaGVpZ2h0PSc4MDAnIGZpbGw9JyMwNTA3MGYnLz4KICA8cmVjdCB3aWR0aD0nMTIwMCcgaGVpZ2h0PSc4MDAnIGZpbGw9J3VybCgjZyknIG9wYWNpdHk9JzAuMjUnLz4KICA8dGV4dCB4PSc1MCUnIHk9JzUwJScgZm9udC1mYW1pbHk9J0JhcmxvdyxIZWx2ZXRpY2Esc2Fucy1zZXJpZicgZm9udC1zaXplPSc2NCcgZmlsbD0nI2Y2ZjhmYicgdGV4dC1hbmNob3I9J21pZGRsZScgZG9taW5hbnQtYmFzZWxpbmU9J21pZGRsZSc+Q2FmZSBlbiB2aXZvPC90ZXh0Pgo8L3N2Zz4=",
+        "tag": "Caliente",
+        "meta": "Pistacho, rúcula, aceite de oliva"
+      },
+      {
+        "title": "Roll canela",
+        "price": "$2.800",
+        "image": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMjAwJyBoZWlnaHQ9JzgwMCcgdmlld0JveD0nMCAwIDEyMDAgODAwJz4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0nZycgeDE9JzAlJyB5MT0nMCUnIHgyPScxMDAlJyB5Mj0nMTAwJSc+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9JyNmZmIxMDAnIG9mZnNldD0nMCUnLz4KICAgICAgPHN0b3Agc3RvcC1jb2xvcj0nI2ZmNmIzZCcgb2Zmc2V0PScxMDAlJy8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0nMTIwMCcgaGVpZ2h0PSc4MDAnIGZpbGw9JyMwNTA3MGYnLz4KICA8cmVjdCB3aWR0aD0nMTIwMCcgaGVpZ2h0PSc4MDAnIGZpbGw9J3VybCgjZyknIG9wYWNpdHk9JzAuMjUnLz4KICA8dGV4dCB4PSc1MCUnIHk9JzUwJScgZm9udC1mYW1pbHk9J0JhcmxvdyxIZWx2ZXRpY2Esc2Fucy1zZXJpZicgZm9udC1zaXplPSc2NCcgZmlsbD0nI2Y2ZjhmYicgdGV4dC1hbmNob3I9J21pZGRsZScgZG9taW5hbnQtYmFzZWxpbmU9J21pZGRsZSc+Vmlhc2FudG88L3RleHQ+Cjwvc3ZnPg==",
+        "tag": "Dulce",
+        "meta": "Glaseado de vainilla, masa lenta"
+      },
+      {
+        "title": "Matcha latte",
+        "price": "$3.600",
+        "image": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMjAwJyBoZWlnaHQ9JzgwMCcgdmlld0JveD0nMCAwIDEyMDAgODAwJz4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0nZycgeDE9JzAlJyB5MT0nMCUnIHgyPScxMDAlJyB5Mj0nMTAwJSc+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9JyNmNTRmOWQnIG9mZnNldD0nMCUnLz4KICAgICAgPHN0b3Agc3RvcC1jb2xvcj0nIzdjNWJmZicgb2Zmc2V0PScxMDAlJy8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0nMTIwMCcgaGVpZ2h0PSc4MDAnIGZpbGw9JyMwNTA3MGYnLz4KICA8cmVjdCB3aWR0aD0nMTIwMCcgaGVpZ2h0PSc4MDAnIGZpbGw9J3VybCgjZyknIG9wYWNpdHk9JzAuMjUnLz4KICA8dGV4dCB4PSc1MCUnIHk9JzUwJScgZm9udC1mYW1pbHk9J0JhcmxvdyxIZWx2ZXRpY2Esc2Fucy1zZXJpZicgZm9udC1zaXplPSc2NCcgZmlsbD0nI2Y2ZjhmYicgdGV4dC1hbmNob3I9J21pZGRsZScgZG9taW5hbnQtYmFzZWxpbmU9J21pZGRsZSc+UGF0aXNzZXJpZTwvdGV4dD4KPC9zdmc+",
+        "tag": "Nuevo",
+        "meta": "Polvo ceremonial, leche cremosa"
+      }
+    ]
+  },
+  "slides": {
+    "defaultDuration": 8,
+    "slides": [
+      {
+        "type": "image",
+        "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMjAwJyBoZWlnaHQ9JzgwMCcgdmlld0JveD0nMCAwIDEyMDAgODAwJz4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0nZycgeDE9JzAlJyB5MT0nMCUnIHgyPScxMDAlJyB5Mj0nMTAwJSc+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9JyM0N2QzZmYnIG9mZnNldD0nMCUnLz4KICAgICAgPHN0b3Agc3RvcC1jb2xvcj0nIzZlZjNjNScgb2Zmc2V0PScxMDAlJy8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0nMTIwMCcgaGVpZ2h0PSc4MDAnIGZpbGw9JyMwNTA3MGYnLz4KICA8cmVjdCB3aWR0aD0nMTIwMCcgaGVpZ2h0PSc4MDAnIGZpbGw9J3VybCgjZyknIG9wYWNpdHk9JzAuMjUnLz4KICA8dGV4dCB4PSc1MCUnIHk9JzUwJScgZm9udC1mYW1pbHk9J0JhcmxvdyxIZWx2ZXRpY2Esc2Fucy1zZXJpZicgZm9udC1zaXplPSc2NCcgZmlsbD0nI2Y2ZjhmYicgdGV4dC1hbmNob3I9J21pZGRsZScgZG9taW5hbnQtYmFzZWxpbmU9J21pZGRsZSc+Q2FmZSBlbiB2aXZvPC90ZXh0Pgo8L3N2Zz4=",
+        "duration": 7
+      },
+      {
+        "type": "html",
+        "duration": 10,
+        "html": "<div style=\"display:grid;place-items:center;text-align:center;padding:32px;\"><div style=\"letter-spacing:0.16em; text-transform:uppercase; color:#ffb100; margin-bottom:10px;\">Pedidos</div><div style=\"font-size:28px; font-weight:700; margin-bottom:6px;\">Escanea para ordenar</div><div style=\"color:#b8c0cf; font-size:18px; line-height:1.5;\">Haz tu pedido sin filas. Retira en barra.</div></div>"
+      }
+    ]
+  },
+  "custom": {
+    "html": "<div style='display:grid;place-items:center;height:100%;font-size:28px;color:#f6f8fb;'>Contenido editable desde admin.</div>"
+  }
+}

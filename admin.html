@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Viasanto Frontis · Admin</title>
+  <link rel="stylesheet" href="/public/admin.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Viasanto Frontis</p>
+        <h1>Gestión de TV en vitrina</h1>
+        <p class="lede">Actualiza playlists, menús, carouseles y HTML personalizado sin tocar código. Cada TV tiene su propio modo y configuración.</p>
+      </div>
+      <div class="hero-actions">
+        <div class="chip">Modo kiosko · Chromium</div>
+        <div class="chip accent">4K / 1080p listo</div>
+      </div>
+    </header>
+
+    <section class="toolbar">
+      <div class="tv-toggle">
+        <button class="tv-button active" data-tv="1">TV 1</button>
+        <button class="tv-button" data-tv="2">TV 2</button>
+      </div>
+      <div class="toolbar-actions">
+        <button id="reloadConfig" class="ghost">Recargar</button>
+        <button id="saveConfig" class="primary">Guardar cambios</button>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card stretch">
+        <div class="card-header">
+          <div>
+            <p class="eyebrow">Modo de pantalla</p>
+            <h3>Qué se muestra</h3>
+          </div>
+        </div>
+        <div class="field">
+          <label for="mode">Modo</label>
+          <select id="mode">
+            <option value="carousel">Carousel de productos</option>
+            <option value="menu">Menú digital</option>
+            <option value="video">Playlist de video</option>
+            <option value="slides">Diapositivas</option>
+            <option value="custom">HTML personalizado</option>
+          </select>
+        </div>
+        <div class="two-col">
+          <div class="field">
+            <label for="brand">Etiqueta en pantalla</label>
+            <input id="brand" type="text" placeholder="Viasanto Caffè" />
+          </div>
+          <div class="field">
+            <label for="refresh">Refrescar config (segundos)</label>
+            <input id="refresh" type="number" min="30" step="5" />
+          </div>
+        </div>
+        <div class="three-col">
+          <div class="field">
+            <label for="background">Fondo</label>
+            <input id="background" type="text" placeholder="#05070f" />
+          </div>
+          <div class="field">
+            <label for="accent">Color acento</label>
+            <input id="accent" type="text" placeholder="#ffb100" />
+          </div>
+          <div class="field">
+            <label for="textColor">Color texto</label>
+            <input id="textColor" type="text" placeholder="#f6f8fb" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="transitionMs">Transición (ms)</label>
+          <input id="transitionMs" type="number" min="200" step="100" />
+        </div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card" data-mode-panel="video">
+        <div class="card-header">
+          <div>
+            <p class="eyebrow">Video</p>
+            <h3>Playlist de video</h3>
+          </div>
+          <button class="ghost" id="addVideo">Agregar video</button>
+        </div>
+        <div id="videoList" class="stack"></div>
+      </div>
+
+      <div class="card" data-mode-panel="menu">
+        <div class="card-header">
+          <div>
+            <p class="eyebrow">Menú</p>
+            <h3>Secciones e items</h3>
+          </div>
+          <button class="ghost" id="addMenuSection">Agregar sección</button>
+        </div>
+        <div class="two-col">
+          <div class="field">
+            <label for="menuTitle">Título</label>
+            <input id="menuTitle" type="text" />
+          </div>
+          <div class="field">
+            <label for="menuSubtitle">Subtítulo</label>
+            <input id="menuSubtitle" type="text" />
+          </div>
+        </div>
+        <div class="two-col">
+          <div class="field">
+            <label for="menuHighlight">Destacado</label>
+            <input id="menuHighlight" type="text" />
+          </div>
+          <div class="field">
+            <label for="menuFooter">Nota inferior</label>
+            <input id="menuFooter" type="text" />
+          </div>
+        </div>
+        <div id="menuSections" class="stack"></div>
+      </div>
+
+      <div class="card" data-mode-panel="carousel">
+        <div class="card-header">
+          <div>
+            <p class="eyebrow">Carousel</p>
+            <h3>Productos en vitrina</h3>
+          </div>
+          <button class="ghost" id="addCarouselItem">Agregar producto</button>
+        </div>
+        <div class="two-col">
+          <div class="field">
+            <label for="carouselHeadline">Título</label>
+            <input id="carouselHeadline" type="text" />
+          </div>
+          <div class="field">
+            <label for="carouselRibbon">Etiqueta</label>
+            <input id="carouselRibbon" type="text" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="carouselSpeed">Duración desplazamiento (segundos)</label>
+          <input id="carouselSpeed" type="number" min="8" step="1" />
+        </div>
+        <div id="carouselItems" class="stack"></div>
+      </div>
+
+      <div class="card" data-mode-panel="slides">
+        <div class="card-header">
+          <div>
+            <p class="eyebrow">Slides</p>
+            <h3>Diapositivas</h3>
+          </div>
+          <button class="ghost" id="addSlide">Agregar slide</button>
+        </div>
+        <div class="field">
+          <label for="slideDefaultDuration">Duración por defecto (segundos)</label>
+          <input id="slideDefaultDuration" type="number" min="3" step="1" />
+        </div>
+        <div id="slidesList" class="stack"></div>
+      </div>
+
+      <div class="card" data-mode-panel="custom">
+        <div class="card-header">
+          <div>
+            <p class="eyebrow">HTML</p>
+            <h3>Diseño personalizado</h3>
+          </div>
+        </div>
+        <div class="field">
+          <label for="customHtml">Bloque HTML (acepta estilos inline)</label>
+          <textarea id="customHtml" rows="6" placeholder="<div>Contenido</div>"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section class="status">
+      <div id="statusText">Listo.</div>
+    </section>
+  </div>
+
+  <!-- Templates -->
+  <template id="video-item-template">
+    <div class="mini-card video-item">
+      <div class="two-col">
+        <div class="field">
+          <label>Fuente</label>
+          <input name="src" type="text" placeholder="/media/video.mp4" />
+        </div>
+        <div class="field">
+          <label>Tipo</label>
+          <input name="type" type="text" placeholder="video/mp4" />
+        </div>
+      </div>
+      <div class="two-col">
+        <label class="checkbox"><input name="mute" type="checkbox" checked /> Silenciar</label>
+        <label class="checkbox"><input name="loop" type="checkbox" checked /> Loop</label>
+      </div>
+      <button class="link remove">Quitar</button>
+    </div>
+  </template>
+
+  <template id="menu-section-template">
+    <div class="mini-card menu-section-item">
+      <div class="two-col">
+        <div class="field">
+          <label>Nombre sección</label>
+          <input name="name" type="text" placeholder="Bebidas frías" />
+        </div>
+      </div>
+      <div class="field">
+        <label>Items</label>
+      </div>
+      <div class="stack items"></div>
+      <div class="space-between">
+        <button class="ghost small add-item">Agregar item</button>
+        <button class="link remove">Quitar sección</button>
+      </div>
+    </div>
+  </template>
+
+  <template id="menu-item-template">
+    <div class="mini-card menu-item">
+      <div class="two-col">
+        <div class="field">
+          <label>Nombre</label>
+          <input name="name" type="text" />
+        </div>
+        <div class="field">
+          <label>Precio</label>
+          <input name="price" type="text" />
+        </div>
+      </div>
+      <div class="field">
+        <label>Descripción</label>
+        <input name="description" type="text" />
+      </div>
+      <button class="link remove">Quitar</button>
+    </div>
+  </template>
+
+  <template id="carousel-item-template">
+    <div class="mini-card carousel-item">
+      <div class="two-col">
+        <div class="field">
+          <label>Título</label>
+          <input name="title" type="text" />
+        </div>
+        <div class="field">
+          <label>Precio</label>
+          <input name="price" type="text" />
+        </div>
+      </div>
+      <div class="field">
+        <label>Etiqueta</label>
+        <input name="tag" type="text" />
+      </div>
+      <div class="field">
+        <label>Descripción</label>
+        <input name="meta" type="text" />
+      </div>
+      <div class="field">
+        <label>Imagen (URL o data URI)</label>
+        <input name="image" type="text" />
+      </div>
+      <button class="link remove">Quitar</button>
+    </div>
+  </template>
+
+  <template id="slide-item-template">
+    <div class="mini-card slide-item">
+      <div class="two-col">
+        <div class="field">
+          <label>Tipo</label>
+          <select name="type">
+            <option value="image">Imagen</option>
+            <option value="html">HTML</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Duración (s)</label>
+          <input name="duration" type="number" min="3" step="1" />
+        </div>
+      </div>
+      <div class="field slide-src">
+        <label>Fuente</label>
+        <input name="src" type="text" placeholder="/media/slide.jpg" />
+      </div>
+      <div class="field slide-html" style="display:none;">
+        <label>HTML</label>
+        <textarea name="html" rows="3" placeholder="<div>Oferta</div>"></textarea>
+      </div>
+      <button class="link remove">Quitar</button>
+    </div>
+  </template>
+
+  <script type="module" src="/public/js/admin.js"></script>
+</body>
+</html>

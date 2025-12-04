@@ -1,0 +1,96 @@
+{
+  "brand": "Viasanto TV 1",
+  "mode": "carousel",
+  "refreshSeconds": 90,
+  "transitionMs": 700,
+  "background": "#05070f",
+  "accent": "#ffb100",
+  "textColor": "#f6f8fb",
+  "video": {
+    "playlist": []
+  },
+  "menu": {
+    "title": "Cafetería de Autor",
+    "subtitle": "Especialidad, panadería fresca y bar de bebidas",
+    "highlight": "Abierto 7:30 — 20:00",
+    "footerNote": "Precios en CLP. Pregunta por opciones sin lactosa.",
+    "sections": [
+      {
+        "name": "Cafés Calientes",
+        "items": [
+          {
+            "name": "Capuccino Doble",
+            "price": "$2.900",
+            "description": "Espresso doble + leche vaporizada"
+          },
+          {
+            "name": "Flat White",
+            "price": "$3.200",
+            "description": "Suave y balanceado, taza de 240 ml"
+          }
+        ]
+      },
+      {
+        "name": "Cafés Fríos",
+        "items": [
+          {
+            "name": "Cold Brew Limón",
+            "price": "$3.200",
+            "description": "48h de macerado en frío, twist cítrico"
+          },
+          {
+            "name": "Tonic Espresso",
+            "price": "$3.400",
+            "description": "Tónica amarga, espresso doble, piel de pomelo"
+          }
+        ]
+      }
+    ]
+  },
+  "carousel": {
+    "headline": "Vitrina que no se detiene",
+    "ribbon": "Pasa y pruébalo",
+    "speedSeconds": 32,
+    "items": [
+      {
+        "title": "Latte con Avena",
+        "price": "$3.400",
+        "image": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMjAwJyBoZWlnaHQ9JzgwMCcgdmlld0JveD0nMCAwIDEyMDAgODAwJz4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0nZycgeDE9JzAlJyB5MT0nMCUnIHgyPScxMDAlJyB5Mj0nMTAwJSc+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9JyNmZmIxMDAnIG9mZnNldD0nMCUnLz4KICAgICAgPHN0b3Agc3RvcC1jb2xvcj0nI2ZmNmIzZCcgb2Zmc2V0PScxMDAlJy8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0nMTIwMCcgaGVpZ2h0PSc4MDAnIGZpbGw9JyMwNTA3MGYnLz4KICA8cmVjdCB3aWR0aD0nMTIwMCcgaGVpZ2h0PSc4MDAnIGZpbGw9J3VybCgjZyknIG9wYWNpdHk9JzAuMjUnLz4KICA8dGV4dCB4PSc1MCUnIHk9JzUwJScgZm9udC1mYW1pbHk9J0JhcmxvdyxIZWx2ZXRpY2Esc2Fucy1zZXJpZicgZm9udC1zaXplPSc2NCcgZmlsbD0nI2Y2ZjhmYicgdGV4dC1hbmNob3I9J21pZGRsZScgZG9taW5hbnQtYmFzZWxpbmU9J21pZGRsZSc+Vmlhc2FudG88L3RleHQ+Cjwvc3ZnPg==",
+        "tag": "Favorito",
+        "meta": "Espresso + leche de avena cremosa"
+      },
+      {
+        "title": "Sandwich Pastrami",
+        "price": "$5.900",
+        "image": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMjAwJyBoZWlnaHQ9JzgwMCcgdmlld0JveD0nMCAwIDEyMDAgODAwJz4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0nZycgeDE9JzAlJyB5MT0nMCUnIHgyPScxMDAlJyB5Mj0nMTAwJSc+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9JyNmNTRmOWQnIG9mZnNldD0nMCUnLz4KICAgICAgPHN0b3Agc3RvcC1jb2xvcj0nIzdjNWJmZicgb2Zmc2V0PScxMDAlJy8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0nMTIwMCcgaGVpZ2h0PSc4MDAnIGZpbGw9JyMwNTA3MGYnLz4KICA8cmVjdCB3aWR0aD0nMTIwMCcgaGVpZ2h0PSc4MDAnIGZpbGw9J3VybCgjZyknIG9wYWNpdHk9JzAuMjUnLz4KICA8dGV4dCB4PSc1MCUnIHk9JzUwJScgZm9udC1mYW1pbHk9J0JhcmxvdyxIZWx2ZXRpY2Esc2Fucy1zZXJpZicgZm9udC1zaXplPSc2NCcgZmlsbD0nI2Y2ZjhmYicgdGV4dC1hbmNob3I9J21pZGRsZScgZG9taW5hbnQtYmFzZWxpbmU9J21pZGRsZSc+UGF0aXNzZXJpZTwvdGV4dD4KPC9zdmc+",
+        "tag": "Nuevo",
+        "meta": "Pan masa madre, pickles caseros, mostaza Dijon"
+      },
+      {
+        "title": "Affogato",
+        "price": "$3.800",
+        "image": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMjAwJyBoZWlnaHQ9JzgwMCcgdmlld0JveD0nMCAwIDEyMDAgODAwJz4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0nZycgeDE9JzAlJyB5MT0nMCUnIHgyPScxMDAlJyB5Mj0nMTAwJSc+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9JyM0N2QzZmYnIG9mZnNldD0nMCUnLz4KICAgICAgPHN0b3Agc3RvcC1jb2xvcj0nIzZlZjNjNScgb2Zmc2V0PScxMDAlJy8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0nMTIwMCcgaGVpZ2h0PSc4MDAnIGZpbGw9JyMwNTA3MGYnLz4KICA8cmVjdCB3aWR0aD0nMTIwMCcgaGVpZ2h0PSc4MDAnIGZpbGw9J3VybCgjZyknIG9wYWNpdHk9JzAuMjUnLz4KICA8dGV4dCB4PSc1MCUnIHk9JzUwJScgZm9udC1mYW1pbHk9J0JhcmxvdyxIZWx2ZXRpY2Esc2Fucy1zZXJpZicgZm9udC1zaXplPSc2NCcgZmlsbD0nI2Y2ZjhmYicgdGV4dC1hbmNob3I9J21pZGRsZScgZG9taW5hbnQtYmFzZWxpbmU9J21pZGRsZSc+Q2FmZSBlbiB2aXZvPC90ZXh0Pgo8L3N2Zz4=",
+        "tag": "Dulce",
+        "meta": "Gelato de vainilla bañado en espresso doble"
+      }
+    ]
+  },
+  "slides": {
+    "defaultDuration": 8,
+    "slides": [
+      {
+        "type": "image",
+        "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMjAwJyBoZWlnaHQ9JzgwMCcgdmlld0JveD0nMCAwIDEyMDAgODAwJz4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0nZycgeDE9JzAlJyB5MT0nMCUnIHgyPScxMDAlJyB5Mj0nMTAwJSc+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9JyNmZmIxMDAnIG9mZnNldD0nMCUnLz4KICAgICAgPHN0b3Agc3RvcC1jb2xvcj0nI2ZmNmIzZCcgb2Zmc2V0PScxMDAlJy8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0nMTIwMCcgaGVpZ2h0PSc4MDAnIGZpbGw9JyMwNTA3MGYnLz4KICA8cmVjdCB3aWR0aD0nMTIwMCcgaGVpZ2h0PSc4MDAnIGZpbGw9J3VybCgjZyknIG9wYWNpdHk9JzAuMjUnLz4KICA8dGV4dCB4PSc1MCUnIHk9JzUwJScgZm9udC1mYW1pbHk9J0JhcmxvdyxIZWx2ZXRpY2Esc2Fucy1zZXJpZicgZm9udC1zaXplPSc2NCcgZmlsbD0nI2Y2ZjhmYicgdGV4dC1hbmNob3I9J21pZGRsZScgZG9taW5hbnQtYmFzZWxpbmU9J21pZGRsZSc+Vmlhc2FudG88L3RleHQ+Cjwvc3ZnPg==",
+        "duration": 8
+      },
+      {
+        "type": "html",
+        "duration": 8,
+        "html": "<div style=\"display:grid;place-items:center;text-align:center;padding:32px;\"><div style=\"letter-spacing:0.16em; text-transform:uppercase; color:#47d3ff; margin-bottom:10px;\">Vitrina viva</div><div style=\"font-size:28px; font-weight:700; margin-bottom:6px;\">Historias que pasan al ritmo de la vereda</div><div style=\"color:#b8c0cf; font-size:18px; line-height:1.5;\">Mira nuestras preparaciones, ofertas y recomendaciones. Todo se actualiza en l\u00ednea desde el panel de administraci\u00f3n.</div></div>"
+      }
+    ]
+  },
+  "custom": {
+    "html": "<div style='display:grid;place-items:center;height:100%;font-size:28px;color:#f6f8fb;'>Personaliza este bloque en el panel.</div>"
+  }
+}
