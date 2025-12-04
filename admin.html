@@ -47,6 +47,7 @@
             <option value="video">Playlist de video</option>
             <option value="slides">Diapositivas</option>
             <option value="custom">HTML personalizado</option>
+            <option value="sequence">Secuencia de modos</option>
           </select>
         </div>
         <div class="two-col">
@@ -175,6 +176,22 @@
           <textarea id="customHtml" rows="6" placeholder="<div>Contenido</div>"></textarea>
         </div>
       </div>
+
+      <div class="card" data-mode-panel="sequence">
+        <div class="card-header">
+          <div>
+            <p class="eyebrow">Secuencia</p>
+            <h3>Lista de modos en loop</h3>
+          </div>
+          <button class="ghost" id="addSequenceStep">Agregar paso</button>
+        </div>
+        <div class="field">
+          <label for="sequenceDefaultDuration">Duración por defecto (segundos)</label>
+          <input id="sequenceDefaultDuration" type="number" min="3" step="1" />
+        </div>
+        <div id="sequenceSteps" class="stack"></div>
+        <p class="menu-footer">Cada paso usa la configuración base del modo elegido. Puedes ajustar duración por paso.</p>
+      </div>
     </section>
 
     <section class="status">
@@ -292,6 +309,28 @@
       <div class="field slide-html" style="display:none;">
         <label>HTML</label>
         <textarea name="html" rows="3" placeholder="<div>Oferta</div>"></textarea>
+      </div>
+      <button class="link remove">Quitar</button>
+    </div>
+  </template>
+
+  <template id="sequence-step-template">
+    <div class="mini-card sequence-step">
+      <div class="two-col">
+        <div class="field">
+          <label>Modo</label>
+          <select name="mode">
+            <option value="video">Video</option>
+            <option value="carousel">Carousel</option>
+            <option value="menu">Menú</option>
+            <option value="slides">Slides</option>
+            <option value="custom">HTML</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Duración (s)</label>
+          <input name="durationSeconds" type="number" min="3" step="1" />
+        </div>
       </div>
       <button class="link remove">Quitar</button>
     </div>

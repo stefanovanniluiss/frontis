@@ -1,13 +1,20 @@
 {
   "brand": "Viasanto TV 1",
-  "mode": "carousel",
+  "mode": "sequence",
   "refreshSeconds": 90,
   "transitionMs": 700,
   "background": "#05070f",
   "accent": "#ffb100",
   "textColor": "#f6f8fb",
   "video": {
-    "playlist": []
+    "playlist": [
+      {
+        "src": "/media/coffee-promo.mp4",
+        "type": "video/mp4",
+        "mute": true,
+        "loop": false
+      }
+    ]
   },
   "menu": {
     "title": "Cafetería de Autor",
@@ -92,5 +99,26 @@
   },
   "custom": {
     "html": "<div style='display:grid;place-items:center;height:100%;font-size:28px;color:#f6f8fb;'>Personaliza este bloque en el panel.</div>"
+  },
+  "sequence": {
+    "defaultDuration": 18,
+    "steps": [
+      {
+        "mode": "video",
+        "durationSeconds": 18
+      },
+      {
+        "mode": "carousel",
+        "durationSeconds": 18
+      },
+      {
+        "mode": "menu",
+        "durationSeconds": 18
+      },
+      {
+        "mode": "slides",
+        "durationSeconds": 16
+      }
+    ]
   }
 }

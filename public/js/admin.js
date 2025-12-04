@@ -29,6 +29,10 @@ const addSlideBtn = document.getElementById("addSlide");
 
 const customHtmlInput = document.getElementById("customHtml");
 
+const sequenceDefaultDurationInput = document.getElementById("sequenceDefaultDuration");
+const sequenceSteps = document.getElementById("sequenceSteps");
+const addSequenceStepBtn = document.getElementById("addSequenceStep");
+
 const saveButton = document.getElementById("saveConfig");
 const reloadButton = document.getElementById("reloadConfig");
 const statusText = document.getElementById("statusText");
@@ -38,6 +42,7 @@ const MENU_SECTION_TEMPLATE = document.getElementById("menu-section-template");
 const MENU_ITEM_TEMPLATE = document.getElementById("menu-item-template");
 const CAROUSEL_TEMPLATE = document.getElementById("carousel-item-template");
 const SLIDE_TEMPLATE = document.getElementById("slide-item-template");
+const SEQUENCE_TEMPLATE = document.getElementById("sequence-step-template");
 
 const SAMPLE_IMAGES = {
   amber:
@@ -55,7 +60,16 @@ const DEFAULT_CONFIG = {
   background: "#05070f",
   accent: "#ffb100",
   textColor: "#f6f8fb",
-  video: { playlist: [] },
+  video: {
+    playlist: [
+      {
+        src: "/media/coffee-promo.mp4",
+        type: "video/mp4",
+        mute: true,
+        loop: false,
+      },
+    ],
+  },
   menu: {
     title: "Cafetería de Autor",
     subtitle: "Café de especialidad y pastelería fresca",
@@ -140,6 +154,15 @@ const DEFAULT_CONFIG = {
   custom: {
     html: "<div style='display:grid;place-items:center;height:100%;font-size:28px;color:#f6f8fb;'>Personaliza este bloque en el panel.</div>",
   },
+  sequence: {
+    defaultDuration: 20,
+    steps: [
+      { mode: "video", durationSeconds: 18 },
+      { mode: "carousel", durationSeconds: 18 },
+      { mode: "menu", durationSeconds: 18 },
+      { mode: "slides", durationSeconds: 16 },
+    ],
+  },
 };
 
 const state = {
@@ -160,12 +183,14 @@ const mergeConfig = (incoming = {}) => ({
   carousel: { ...DEFAULT_CONFIG.carousel, ...(incoming.carousel || {}) },
   slides: { ...DEFAULT_CONFIG.slides, ...(incoming.slides || {}) },
   custom: { ...DEFAULT_CONFIG.custom, ...(incoming.custom || {}) },
+  sequence: { ...DEFAULT_CONFIG.sequence, ...(incoming.sequence || {}) },
 });
 
 function togglePanels(mode) {
+  const showAll = mode === "sequence";
   document.querySelectorAll("[data-mode-panel]").forEach((panel) => {
-    panel.style.display =
-      panel.getAttribute("data-mode-panel") === mode ? "block" : "none";
+    const panelMode = panel.getAttribute("data-mode-panel");
+    panel.style.display = showAll || panelMode === mode ? "block" : "none";
   });
 }
 
@@ -250,6 +275,13 @@ function renderSlides(slides = [], defaultDuration = 8) {
   slides.forEach((slide) => addSlide(slide));
 }
 
+function renderSequence(steps = [], defaultDuration = 20) {
+  sequenceSteps.innerHTML = "";
+  sequenceDefaultDurationInput.value = defaultDuration;
+  if (!steps.length) steps = [{}];
+  steps.forEach((step) => addSequenceStep(step));
+}
+
 function addSlide(slide = {}) {
   const node = SLIDE_TEMPLATE.content.firstElementChild.cloneNode(true);
   const typeSelect = node.querySelector('select[name="type"]');
@@ -275,6 +307,15 @@ function addSlide(slide = {}) {
 
   node.querySelector(".remove").addEventListener("click", () => node.remove());
   slidesList.appendChild(node);
+}
+
+function addSequenceStep(step = {}) {
+  const node = SEQUENCE_TEMPLATE.content.firstElementChild.cloneNode(true);
+  node.querySelector('select[name="mode"]').value = step.mode || "carousel";
+  node.querySelector('input[name="durationSeconds"]').value =
+    step.durationSeconds || "";
+  node.querySelector(".remove").addEventListener("click", () => node.remove());
+  sequenceSteps.appendChild(node);
 }
 
 const readVideoList = () =>
@@ -328,6 +369,16 @@ const readSlides = () =>
       return slide.src;
     });
 
+const readSequenceSteps = () =>
+  Array.from(sequenceSteps.querySelectorAll(".sequence-step"))
+    .map((node) => ({
+      mode: node.querySelector('select[name="mode"]').value,
+      durationSeconds:
+        Number(node.querySelector('input[name="durationSeconds"]').value) ||
+        undefined,
+    }))
+    .filter((step) => step.mode);
+
 function applyConfig(config) {
   modeSelect.value = config.mode || "carousel";
   brandInput.value = config.brand || "";
@@ -353,6 +404,7 @@ function applyConfig(config) {
   renderCarouselItems(carousel.items || []);
   renderSlides(config.slides?.slides || [], config.slides?.defaultDuration || 8);
   customHtmlInput.value = config.custom?.html || "";
+  renderSequence(config.sequence?.steps || [], config.sequence?.defaultDuration || 20);
 
   togglePanels(modeSelect.value);
 }
@@ -384,6 +436,10 @@ const gatherConfig = () => ({
     slides: readSlides(),
   },
   custom: { html: customHtmlInput.value },
+  sequence: {
+    defaultDuration: Number(sequenceDefaultDurationInput.value) || 20,
+    steps: readSequenceSteps(),
+  },
 });
 
 async function loadConfig(tv) {
@@ -433,6 +489,7 @@ function wireEvents() {
   addMenuSectionBtn.addEventListener("click", () => addMenuSection());
   addCarouselItemBtn.addEventListener("click", () => addCarouselItem());
   addSlideBtn.addEventListener("click", () => addSlide());
+  addSequenceStepBtn.addEventListener("click", () => addSequenceStep());
 
   TV_BUTTONS.forEach((btn) => {
     btn.addEventListener("click", () => {

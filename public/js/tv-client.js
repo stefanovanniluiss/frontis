@@ -158,12 +158,17 @@ const DEFAULT_CONFIG = {
       </div>
     </div>`,
   },
+  sequence: {
+    defaultDuration: 20,
+    steps: [],
+  },
 };
 
 const state = {
   config: DEFAULT_CONFIG,
   current: null,
   refreshTimer: null,
+  sequenceTimer: null,
 };
 
 function mergeConfig(incoming = {}) {
@@ -178,6 +183,7 @@ function mergeConfig(incoming = {}) {
     },
     slides: { ...DEFAULT_CONFIG.slides, ...(incoming.slides || {}) },
     custom: { ...DEFAULT_CONFIG.custom, ...(incoming.custom || {}) },
+    sequence: { ...DEFAULT_CONFIG.sequence, ...(incoming.sequence || {}) },
   };
 }
 
@@ -217,15 +223,14 @@ function renderBrand(text) {
   brandBadge.textContent = text || "Viasanto";
 }
 
-function swapMode(config) {
-  const mode = config.mode || "carousel";
+function renderMode(mode, modeConfig, globalConfig) {
   const factory = players[mode] || players.carousel;
   const wrapper = document.createElement("div");
   wrapper.className = `mode-wrapper ${mode}-mode`;
   modeHost.appendChild(wrapper);
 
   // Mount the selected player
-  const instance = factory(wrapper, config[mode] || {}, config);
+  const instance = factory(wrapper, modeConfig || {}, globalConfig);
 
   requestAnimationFrame(() => wrapper.classList.add("active"));
 
@@ -236,10 +241,51 @@ function swapMode(config) {
     setTimeout(() => {
       prev.instance?.destroy?.();
       prev.wrapper.remove();
-    }, config.transitionMs || DEFAULT_CONFIG.transitionMs);
+    }, globalConfig.transitionMs || DEFAULT_CONFIG.transitionMs);
   }
 
   state.current = { wrapper, instance };
+}
+
+function stopSequence() {
+  if (state.sequenceTimer) {
+    clearTimeout(state.sequenceTimer);
+    state.sequenceTimer = null;
+  }
+}
+
+function startSequence(config) {
+  stopSequence();
+  const steps = Array.isArray(config.sequence?.steps) ? config.sequence.steps : [];
+  if (!steps.length) {
+    renderMode("carousel", config.carousel || {}, config);
+    return;
+  }
+
+  const defaultDuration = Math.max(3, Number(config.sequence?.defaultDuration || 20));
+  let index = 0;
+
+  const playStep = () => {
+    const step = steps[index % steps.length];
+    const modeName = step?.mode && players[step.mode] ? step.mode : "carousel";
+    const mergedConfig = {
+      ...(config[modeName] || {}),
+      ...(step?.config || {}),
+    };
+    const duration = Math.max(
+      3,
+      Number(step?.durationSeconds || defaultDuration)
+    );
+
+    renderMode(modeName, mergedConfig, config);
+
+    state.sequenceTimer = setTimeout(() => {
+      index = (index + 1) % steps.length;
+      playStep();
+    }, duration * 1000);
+  };
+
+  playStep();
 }
 
 async function loadAndRender(initial = false) {
@@ -249,7 +295,13 @@ async function loadAndRender(initial = false) {
     setTheme(state.config);
     renderBrand(state.config.brand);
     hideError();
-    swapMode(state.config);
+    if (state.config.mode === "sequence") {
+      startSequence(state.config);
+    } else {
+      stopSequence();
+      const mode = state.config.mode || "carousel";
+      renderMode(mode, state.config[mode] || {}, state.config);
+    }
   } catch (error) {
     console.error(error);
     showError(
@@ -257,7 +309,7 @@ async function loadAndRender(initial = false) {
     );
     if (initial) {
       state.config = DEFAULT_CONFIG;
-      swapMode(state.config);
+      renderMode(state.config.mode, state.config[state.config.mode], state.config);
     }
   }
 }
