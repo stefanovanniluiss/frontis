@@ -37,6 +37,8 @@ const addSequenceStepBtn = document.getElementById("addSequenceStep");
 const saveButton = document.getElementById("saveConfig");
 const reloadButton = document.getElementById("reloadConfig");
 const statusText = document.getElementById("statusText");
+const productsList = document.getElementById("productsList");
+const refreshProductsBtn = document.getElementById("refreshProducts");
 
 const VIDEO_TEMPLATE = document.getElementById("video-item-template");
 const MENU_SECTION_TEMPLATE = document.getElementById("menu-section-template");
@@ -170,6 +172,7 @@ const DEFAULT_CONFIG = {
 const state = {
   tv: 1,
   config: DEFAULT_CONFIG,
+  products: [],
 };
 
 const setStatus = (text, tone = "info") => {
@@ -318,6 +321,107 @@ function addSequenceStep(step = {}) {
     step.durationSeconds || "";
   node.querySelector(".remove").addEventListener("click", () => node.remove());
   sequenceSteps.appendChild(node);
+}
+
+function renderProducts(products = []) {
+  productsList.innerHTML = "";
+  if (!products.length) {
+    productsList.innerHTML =
+      "<div class='menu-footer'>No hay productos cargados.</div>";
+    return;
+  }
+  products.forEach((p) => {
+    const card = document.createElement("div");
+    card.className = "product-card";
+
+    const thumb = document.createElement("div");
+    thumb.className = "thumb";
+    if (p.image_url) {
+      const img = document.createElement("img");
+      img.src = p.image_url;
+      img.alt = p.name || "";
+      thumb.appendChild(img);
+    } else {
+      thumb.textContent = "Sin imagen";
+    }
+
+    const name = document.createElement("div");
+    name.className = "name";
+    name.textContent = p.name || "Producto";
+
+    const desc = document.createElement("div");
+    desc.className = "desc";
+    desc.textContent = p.description || "";
+
+    const price = document.createElement("div");
+    price.className = "price";
+    price.textContent = p.price_clp ? `$${p.price_clp}` : "";
+
+    const actions = document.createElement("div");
+    actions.className = "actions";
+
+    const addToCarousel = document.createElement("button");
+    addToCarousel.className = "ghost small";
+    addToCarousel.textContent = "Carousel";
+    addToCarousel.addEventListener("click", () => {
+      addCarouselItem({
+        title: p.name,
+        price: p.price_clp ? `$${p.price_clp}` : "",
+        meta: p.description,
+        image: p.image_url,
+      });
+    });
+
+    const addToSlides = document.createElement("button");
+    addToSlides.className = "ghost small";
+    addToSlides.textContent = "Slide";
+    addToSlides.addEventListener("click", () => {
+      addSlide({
+        type: "image",
+        src: p.image_url,
+        duration: 8,
+      });
+    });
+
+    const addToMenu = document.createElement("button");
+    addToMenu.className = "ghost small";
+    addToMenu.textContent = "Menú";
+    addToMenu.addEventListener("click", () => {
+      let section = menuSections.querySelector(".menu-section-item");
+      if (!section) {
+        addMenuSection({ items: [] });
+        section = menuSections.querySelector(".menu-section-item");
+      }
+      const itemsContainer = section.querySelector(".items");
+      const itemNode = MENU_ITEM_TEMPLATE.content.firstElementChild.cloneNode(true);
+      itemNode.querySelector('input[name="name"]').value = p.name || "";
+      itemNode.querySelector('input[name="price"]').value = p.price_clp ? `$${p.price_clp}` : "";
+      itemNode.querySelector('input[name="description"]').value = p.description || "";
+      itemNode.querySelector(".remove").addEventListener("click", () => itemNode.remove());
+      itemsContainer.appendChild(itemNode);
+    });
+
+    actions.append(addToCarousel, addToSlides, addToMenu);
+
+    card.append(thumb, name, desc, price, actions);
+    productsList.appendChild(card);
+  });
+}
+
+async function fetchProducts() {
+  setStatus("Cargando productos...");
+  try {
+    const res = await fetch("/api/products.php?ts=" + Date.now());
+    if (!res.ok) throw new Error("No se pudo cargar productos");
+    const data = await res.json();
+    state.products = data.items || [];
+    renderProducts(state.products);
+    setStatus("Productos listos.");
+  } catch (error) {
+    console.error(error);
+    renderProducts([]);
+    setStatus("No se pudieron cargar productos.", "warn");
+  }
 }
 
 const readVideoList = () =>
@@ -494,6 +598,7 @@ function wireEvents() {
   addCarouselItemBtn.addEventListener("click", () => addCarouselItem());
   addSlideBtn.addEventListener("click", () => addSlide());
   addSequenceStepBtn.addEventListener("click", () => addSequenceStep());
+  refreshProductsBtn.addEventListener("click", fetchProducts);
 
   TV_BUTTONS.forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -512,6 +617,7 @@ function init() {
   wireEvents();
   togglePanels(modeSelect.value);
   loadConfig(state.tv);
+  fetchProducts();
 }
 
 init();
