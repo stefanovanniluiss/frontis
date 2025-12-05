@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
 }
 
 $tv = isset($_GET["tv"]) ? intval($_GET["tv"]) : 0;
-if ($tv < 1 || $tv > 2) {
+if ($tv < 1 || $tv > 3) {
     http_response_code(400);
     echo json_encode(["error" => "TV inválida"]);
     exit;

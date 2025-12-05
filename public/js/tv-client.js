@@ -33,6 +33,7 @@ const fallbackImage =
 const DEFAULT_CONFIG = {
   brand: "Viasanto Caffè",
   mode: "carousel",
+  orientation: "landscape",
   refreshSeconds: 90,
   transitionMs: 700,
   background: "#05070f",
@@ -210,6 +211,12 @@ function setTheme(config) {
   }
 }
 
+function setOrientation(config) {
+  const isPortrait = (config.orientation || "landscape") === "portrait";
+  document.body.classList.toggle("portrait", isPortrait);
+  document.body.classList.toggle("landscape", !isPortrait);
+}
+
 function showError(message) {
   errorOverlay.textContent = message;
   errorOverlay.style.display = "grid";
@@ -293,6 +300,7 @@ async function loadAndRender(initial = false) {
     const incoming = await fetchConfig();
     state.config = mergeConfig(incoming);
     setTheme(state.config);
+    setOrientation(state.config);
     renderBrand(state.config.brand);
     hideError();
     if (state.config.mode === "sequence") {
@@ -309,6 +317,8 @@ async function loadAndRender(initial = false) {
     );
     if (initial) {
       state.config = DEFAULT_CONFIG;
+      setTheme(state.config);
+      setOrientation(state.config);
       renderMode(state.config.mode, state.config[state.config.mode], state.config);
     }
   }

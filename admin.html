@@ -24,6 +24,7 @@
       <div class="tv-toggle">
         <button class="tv-button active" data-tv="1">TV 1</button>
         <button class="tv-button" data-tv="2">TV 2</button>
+        <button class="tv-button" data-tv="3">TV 3</button>
       </div>
       <div class="toolbar-actions">
         <button id="reloadConfig" class="ghost">Recargar</button>
@@ -51,15 +52,15 @@
           </select>
         </div>
         <div class="two-col">
-          <div class="field">
-            <label for="brand">Etiqueta en pantalla</label>
-            <input id="brand" type="text" placeholder="Viasanto Caffè" />
-          </div>
-          <div class="field">
-            <label for="refresh">Refrescar config (segundos)</label>
-            <input id="refresh" type="number" min="30" step="5" />
-          </div>
+        <div class="field">
+          <label for="brand">Etiqueta en pantalla</label>
+          <input id="brand" type="text" placeholder="Viasanto Caffè" />
         </div>
+        <div class="field">
+          <label for="refresh">Refrescar config (segundos)</label>
+          <input id="refresh" type="number" min="30" step="5" />
+        </div>
+      </div>
         <div class="three-col">
           <div class="field">
             <label for="background">Fondo</label>
@@ -74,9 +75,18 @@
             <input id="textColor" type="text" placeholder="#f6f8fb" />
           </div>
         </div>
-        <div class="field">
-          <label for="transitionMs">Transición (ms)</label>
-          <input id="transitionMs" type="number" min="200" step="100" />
+        <div class="two-col">
+          <div class="field">
+            <label for="orientation">Orientación</label>
+            <select id="orientation">
+              <option value="landscape">Horizontal</option>
+              <option value="portrait">Vertical (90°)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="transitionMs">Transición (ms)</label>
+            <input id="transitionMs" type="number" min="200" step="100" />
+          </div>
         </div>
       </div>
     </section>

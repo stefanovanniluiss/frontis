@@ -1,0 +1,118 @@
+{
+  "brand": "Viasanto TV 3",
+  "mode": "sequence",
+  "orientation": "portrait",
+  "refreshSeconds": 90,
+  "transitionMs": 700,
+  "background": "#04060d",
+  "accent": "#47d3ff",
+  "textColor": "#f6f8fb",
+  "video": {
+    "playlist": [
+      {
+        "src": "/media/vertical-promo.mp4",
+        "type": "video/mp4",
+        "mute": true,
+        "loop": false
+      }
+    ]
+  },
+  "menu": {
+    "title": "Cafetería vertical",
+    "subtitle": "Ideal para vitrina en modo retrato",
+    "highlight": "Abierto 7:30 — 20:00",
+    "footerNote": "Precios en CLP. Pregunta por sin lactosa.",
+    "sections": [
+      {
+        "name": "Cafés especiales",
+        "items": [
+          {
+            "name": "Latte Avena",
+            "price": "$3.400",
+            "description": "Espresso doble + avena cremosa"
+          },
+          {
+            "name": "Mocha",
+            "price": "$3.600",
+            "description": "Cacao belga y espresso intenso"
+          }
+        ]
+      },
+      {
+        "name": "Dulces",
+        "items": [
+          {
+            "name": "Brownie nuez",
+            "price": "$2.500",
+            "description": "Cacao 70%, centro húmedo"
+          },
+          {
+            "name": "Cheesecake berries",
+            "price": "$3.400",
+            "description": "Coulis de frutos rojos"
+          }
+        ]
+      }
+    ]
+  },
+  "carousel": {
+    "headline": "Recomendados",
+    "ribbon": "Vitrina",
+    "speedSeconds": 30,
+    "items": [
+      {
+        "title": "Matcha latte",
+        "price": "$3.600",
+        "image": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMjAwJyBoZWlnaHQ9JzgwMCcgdmlld0JveD0nMCAwIDEyMDAgODAwJz4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0nZycgeDE9JzAlJyB5MT0nMCUnIHgyPScxMDAlJyB5Mj0nMTAwJSc+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9JyNmNTRmOWQnIG9mZnNldD0nMCUnLz4KICAgICAgPHN0b3Agc3RvcC1jb2xvcj0nIzdjNWJmZicgb2Zmc2V0PScxMDAlJy8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0nMTIwMCcgaGVpZ2h0PSc4MDAnIGZpbGw9JyMwNTA3MGYnLz4KICA8cmVjdCB3aWR0aD0nMTIwMCcgaGVpZ2h0PSc4MDAnIGZpbGw9J3VybCgjZyknIG9wYWNpdHk9JzAuMjUnLz4KICA8dGV4dCB4PSc1MCUnIHk9JzUwJScgZm9udC1mYW1pbHk9J0JhcmxvdyxIZWx2ZXRpY2Esc2Fucy1zZXJpZicgZm9udC1zaXplPSc2NCcgZmlsbD0nI2Y2ZjhmYicgdGV4dC1hbmNob3I9J21pZGRsZScgZG9taW5hbnQtYmFzZWxpbmU9J21pZGRsZSc+UGF0aXNzZXJpZTwvdGV4dD4KPC9zdmc+",
+        "tag": "Nuevo",
+        "meta": "Polvo ceremonial, leche cremosa"
+      },
+      {
+        "title": "Croissant almendras",
+        "price": "$2.400",
+        "image": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMjAwJyBoZWlnaHQ9JzgwMCcgdmlld0JveD0nMCAwIDEyMDAgODAwJz4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0nZycgeDE9JzAlJyB5MT0nMCUnIHgyPScxMDAlJyB5Mj0nMTAwJSc+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9JyNmZmIxMDAnIG9mZnNldD0nMCUnLz4KICAgICAgPHN0b3Agc3RvcC1jb2xvcj0nI2ZmNmIzZCcgb2Zmc2V0PScxMDAlJy8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0nMTIwMCcgaGVpZ2h0PSc4MDAnIGZpbGw9JyMwNTA3MGYnLz4KICA8cmVjdCB3aWR0aD0nMTIwMCcgaGVpZ2h0PSc4MDAnIGZpbGw9J3VybCgjZyknIG9wYWNpdHk9JzAuMjUnLz4KICA8dGV4dCB4PSc1MCUnIHk9JzUwJScgZm9udC1mYW1pbHk9J0JhcmxvdyxIZWx2ZXRpY2Esc2Fucy1zZXJpZicgZm9udC1zaXplPSc2NCcgZmlsbD0nI2Y2ZjhmYicgdGV4dC1hbmNob3I9J21pZGRsZScgZG9taW5hbnQtYmFzZWxpbmU9J21pZGRsZSc+Vmlhc2FudG88L3RleHQ+Cjwvc3ZnPg==",
+        "tag": "Dulce",
+        "meta": "Mantequilla francesa, relleno praliné"
+      }
+    ]
+  },
+  "slides": {
+    "defaultDuration": 9,
+    "slides": [
+      {
+        "type": "image",
+        "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMjAwJyBoZWlnaHQ9JzgwMCcgdmlld0JveD0nMCAwIDEyMDAgODAwJz4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0nZycgeDE9JzAlJyB5MT0nMCUnIHgyPScxMDAlJyB5Mj0nMTAwJSc+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9JyM0N2QzZmYnIG9mZnNldD0nMCUnLz4KICAgICAgPHN0b3Agc3RvcC1jb2xvcj0nIzZlZjNjNScgb2Zmc2V0PScxMDAlJy8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0nMTIwMCcgaGVpZ2h0PSc4MDAnIGZpbGw9JyMwNTA3MGYnLz4KICA8cmVjdCB3aWR0aD0nMTIwMCcgaGVpZ2h0PSc4MDAnIGZpbGw9J3VybCgjZyknIG9wYWNpdHk9JzAuMjUnLz4KICA8dGV4dCB4PSc1MCUnIHk9JzUwJScgZm9udC1mYW1pbHk9J0JhcmxvdyxIZWx2ZXRpY2Esc2Fucy1zZXJpZicgZm9udC1zaXplPSc2NCcgZmlsbD0nI2Y2ZjhmYicgdGV4dC1hbmNob3I9J21pZGRsZScgZG9taW5hbnQtYmFzZWxpbmU9J21pZGRsZSc+Q2FmZSBlbiB2aXZvPC90ZXh0Pgo8L3N2Zz4=",
+        "duration": 8
+      },
+      {
+        "type": "html",
+        "duration": 10,
+        "html": "<div style=\"display:grid;place-items:center;text-align:center;padding:42px;\"><div style=\"letter-spacing:0.16em; text-transform:uppercase; color:#47d3ff; margin-bottom:10px;\">Vertical</div><div style=\"font-size:28px; font-weight:700; margin-bottom:6px;\">Contenido optimizado a 9:16</div><div style=\"color:#b8c0cf; font-size:18px; line-height:1.5;\">Ajusta este layout en el panel si lo prefieres.</div></div>"
+      }
+    ]
+  },
+  "custom": {
+    "html": "<div style='display:grid;place-items:center;height:100%;font-size:28px;color:#f6f8fb;'>Contenido en modo retrato.</div>"
+  },
+  "sequence": {
+    "defaultDuration": 18,
+    "steps": [
+      {
+        "mode": "video",
+        "durationSeconds": 18
+      },
+      {
+        "mode": "carousel",
+        "durationSeconds": 18
+      },
+      {
+        "mode": "menu",
+        "durationSeconds": 18
+      },
+      {
+        "mode": "slides",
+        "durationSeconds": 12
+      }
+    ]
+  }
+}

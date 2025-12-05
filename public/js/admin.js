@@ -6,6 +6,7 @@ const backgroundInput = document.getElementById("background");
 const accentInput = document.getElementById("accent");
 const textColorInput = document.getElementById("textColor");
 const transitionInput = document.getElementById("transitionMs");
+const orientationSelect = document.getElementById("orientation");
 
 const videoList = document.getElementById("videoList");
 const addVideoBtn = document.getElementById("addVideo");
@@ -55,6 +56,7 @@ const SAMPLE_IMAGES = {
 const DEFAULT_CONFIG = {
   brand: "Viasanto Caffè",
   mode: "carousel",
+  orientation: "landscape",
   refreshSeconds: 90,
   transitionMs: 700,
   background: "#05070f",
@@ -405,6 +407,7 @@ function applyConfig(config) {
   renderSlides(config.slides?.slides || [], config.slides?.defaultDuration || 8);
   customHtmlInput.value = config.custom?.html || "";
   renderSequence(config.sequence?.steps || [], config.sequence?.defaultDuration || 20);
+  orientationSelect.value = config.orientation || "landscape";
 
   togglePanels(modeSelect.value);
 }
@@ -414,6 +417,7 @@ const gatherConfig = () => ({
   brand: brandInput.value.trim(),
   refreshSeconds: Number(refreshInput.value) || 90,
   transitionMs: Number(transitionInput.value) || 700,
+  orientation: orientationSelect.value || "landscape",
   background: backgroundInput.value.trim() || DEFAULT_CONFIG.background,
   accent: accentInput.value.trim() || DEFAULT_CONFIG.accent,
   textColor: textColorInput.value.trim() || DEFAULT_CONFIG.textColor,
