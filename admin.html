@@ -32,187 +32,198 @@
       </div>
     </section>
 
-    <section class="grid">
-      <div class="card stretch">
-        <div class="card-header">
-          <div>
-            <p class="eyebrow">Modo de pantalla</p>
-            <h3>Qué se muestra</h3>
-          </div>
-        </div>
-        <div class="field">
-          <label for="mode">Modo</label>
-          <select id="mode">
-            <option value="carousel">Carousel de productos</option>
-            <option value="menu">Menú digital</option>
-            <option value="video">Playlist de video</option>
-            <option value="slides">Diapositivas</option>
-            <option value="custom">HTML personalizado</option>
-            <option value="sequence">Secuencia de modos</option>
-          </select>
-        </div>
-        <div class="two-col">
-        <div class="field">
-          <label for="brand">Etiqueta en pantalla</label>
-          <input id="brand" type="text" placeholder="Viasanto Caffè" />
-        </div>
-        <div class="field">
-          <label for="refresh">Refrescar config (segundos)</label>
-          <input id="refresh" type="number" min="30" step="5" />
-        </div>
-      </div>
-        <div class="three-col">
-          <div class="field">
-            <label for="background">Fondo</label>
-            <input id="background" type="text" placeholder="#05070f" />
+    <section class="catalog-layout">
+      <div class="catalog-column">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <p class="eyebrow">Catálogo</p>
+              <h3>Productos del sistema</h3>
+            </div>
+            <button class="ghost" id="refreshProducts">Actualizar</button>
           </div>
           <div class="field">
-            <label for="accent">Color acento</label>
-            <input id="accent" type="text" placeholder="#ffb100" />
-          </div>
-          <div class="field">
-            <label for="textColor">Color texto</label>
-            <input id="textColor" type="text" placeholder="#f6f8fb" />
-          </div>
-        </div>
-        <div class="two-col">
-          <div class="field">
-            <label for="orientation">Orientación</label>
-            <select id="orientation">
-              <option value="landscape">Horizontal</option>
-              <option value="portrait">Vertical (90°)</option>
+            <label for="targetMenuSection">Agregar a sección de Menú</label>
+            <select id="targetMenuSection">
+              <option value="">Primera sección</option>
             </select>
           </div>
-          <div class="field">
-            <label for="transitionMs">Transición (ms)</label>
-            <input id="transitionMs" type="number" min="200" step="100" />
-          </div>
+          <div id="productsList" class="product-grid"></div>
+          <p class="menu-footer">Pulsa “Carousel”, “Slide” o “Menú” para insertar el producto en el formulario activo.</p>
         </div>
       </div>
-    </section>
+      <div class="admin-column">
+        <section class="grid">
+          <div class="card stretch">
+            <div class="card-header">
+              <div>
+                <p class="eyebrow">Modo de pantalla</p>
+                <h3>Qué se muestra</h3>
+              </div>
+            </div>
+            <div class="field">
+              <label for="mode">Modo</label>
+              <select id="mode">
+                <option value="carousel">Carousel de productos</option>
+                <option value="menu">Menú digital</option>
+                <option value="video">Playlist de video</option>
+                <option value="slides">Diapositivas</option>
+                <option value="custom">HTML personalizado</option>
+                <option value="sequence">Secuencia de modos</option>
+              </select>
+            </div>
+            <div class="two-col">
+            <div class="field">
+              <label for="brand">Etiqueta en pantalla</label>
+              <input id="brand" type="text" placeholder="Viasanto Caffè" />
+            </div>
+            <div class="field">
+              <label for="refresh">Refrescar config (segundos)</label>
+              <input id="refresh" type="number" min="30" step="5" />
+            </div>
+          </div>
+            <div class="three-col">
+              <div class="field">
+                <label for="background">Fondo</label>
+                <input id="background" type="text" placeholder="#05070f" />
+              </div>
+              <div class="field">
+                <label for="accent">Color acento</label>
+                <input id="accent" type="text" placeholder="#ffb100" />
+              </div>
+              <div class="field">
+                <label for="textColor">Color texto</label>
+                <input id="textColor" type="text" placeholder="#f6f8fb" />
+              </div>
+            </div>
+            <div class="two-col">
+              <div class="field">
+                <label for="orientation">Orientación</label>
+                <select id="orientation">
+                  <option value="landscape">Horizontal</option>
+                  <option value="portrait">Vertical (90°)</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="transitionMs">Transición (ms)</label>
+                <input id="transitionMs" type="number" min="200" step="100" />
+              </div>
+            </div>
+          </div>
+        </section>
 
-    <section class="grid">
-      <div class="card" data-mode-panel="video">
-        <div class="card-header">
-          <div>
-            <p class="eyebrow">Video</p>
-            <h3>Playlist de video</h3>
+        <section class="grid">
+          <div class="card" data-mode-panel="video">
+            <div class="card-header">
+              <div>
+                <p class="eyebrow">Video</p>
+                <h3>Playlist de video</h3>
+              </div>
+              <button class="ghost" id="addVideo">Agregar video</button>
+            </div>
+            <div id="videoList" class="stack"></div>
           </div>
-          <button class="ghost" id="addVideo">Agregar video</button>
-        </div>
-        <div id="videoList" class="stack"></div>
-      </div>
 
-      <div class="card" data-mode-panel="menu">
-        <div class="card-header">
-          <div>
-            <p class="eyebrow">Menú</p>
-            <h3>Secciones e items</h3>
+          <div class="card" data-mode-panel="menu">
+            <div class="card-header">
+              <div>
+                <p class="eyebrow">Menú</p>
+                <h3>Secciones e items</h3>
+              </div>
+              <button class="ghost" id="addMenuSection">Agregar sección</button>
+            </div>
+            <div class="two-col">
+              <div class="field">
+                <label for="menuTitle">Título</label>
+                <input id="menuTitle" type="text" />
+              </div>
+              <div class="field">
+                <label for="menuSubtitle">Subtítulo</label>
+                <input id="menuSubtitle" type="text" />
+              </div>
+            </div>
+            <div class="two-col">
+              <div class="field">
+                <label for="menuHighlight">Destacado</label>
+                <input id="menuHighlight" type="text" />
+              </div>
+              <div class="field">
+                <label for="menuFooter">Nota inferior</label>
+                <input id="menuFooter" type="text" />
+              </div>
+            </div>
+            <div id="menuSections" class="stack"></div>
           </div>
-          <button class="ghost" id="addMenuSection">Agregar sección</button>
-        </div>
-        <div class="two-col">
-          <div class="field">
-            <label for="menuTitle">Título</label>
-            <input id="menuTitle" type="text" />
-          </div>
-          <div class="field">
-            <label for="menuSubtitle">Subtítulo</label>
-            <input id="menuSubtitle" type="text" />
-          </div>
-        </div>
-        <div class="two-col">
-          <div class="field">
-            <label for="menuHighlight">Destacado</label>
-            <input id="menuHighlight" type="text" />
-          </div>
-          <div class="field">
-            <label for="menuFooter">Nota inferior</label>
-            <input id="menuFooter" type="text" />
-          </div>
-        </div>
-        <div id="menuSections" class="stack"></div>
-      </div>
 
-      <div class="card" data-mode-panel="carousel">
-        <div class="card-header">
-          <div>
-            <p class="eyebrow">Carousel</p>
-            <h3>Productos en vitrina</h3>
+          <div class="card" data-mode-panel="carousel">
+            <div class="card-header">
+              <div>
+                <p class="eyebrow">Carousel</p>
+                <h3>Productos en vitrina</h3>
+              </div>
+              <button class="ghost" id="addCarouselItem">Agregar producto</button>
+            </div>
+            <div class="two-col">
+              <div class="field">
+                <label for="carouselHeadline">Título</label>
+                <input id="carouselHeadline" type="text" />
+              </div>
+              <div class="field">
+                <label for="carouselRibbon">Etiqueta</label>
+                <input id="carouselRibbon" type="text" />
+              </div>
+            </div>
+            <div class="field">
+              <label for="carouselSpeed">Duración desplazamiento (segundos)</label>
+              <input id="carouselSpeed" type="number" min="8" step="1" />
+            </div>
+            <div id="carouselItems" class="stack"></div>
           </div>
-          <button class="ghost" id="addCarouselItem">Agregar producto</button>
-        </div>
-        <div class="two-col">
-          <div class="field">
-            <label for="carouselHeadline">Título</label>
-            <input id="carouselHeadline" type="text" />
-          </div>
-          <div class="field">
-            <label for="carouselRibbon">Etiqueta</label>
-            <input id="carouselRibbon" type="text" />
-          </div>
-        </div>
-        <div class="field">
-          <label for="carouselSpeed">Duración desplazamiento (segundos)</label>
-          <input id="carouselSpeed" type="number" min="8" step="1" />
-        </div>
-        <div id="carouselItems" class="stack"></div>
-      </div>
 
-      <div class="card" data-mode-panel="slides">
-        <div class="card-header">
-          <div>
-            <p class="eyebrow">Slides</p>
-            <h3>Diapositivas</h3>
+          <div class="card" data-mode-panel="slides">
+            <div class="card-header">
+              <div>
+                <p class="eyebrow">Slides</p>
+                <h3>Diapositivas</h3>
+              </div>
+              <button class="ghost" id="addSlide">Agregar slide</button>
+            </div>
+            <div class="field">
+              <label for="slideDefaultDuration">Duración por defecto (segundos)</label>
+              <input id="slideDefaultDuration" type="number" min="3" step="1" />
+            </div>
+            <div id="slidesList" class="stack"></div>
           </div>
-          <button class="ghost" id="addSlide">Agregar slide</button>
-        </div>
-        <div class="field">
-          <label for="slideDefaultDuration">Duración por defecto (segundos)</label>
-          <input id="slideDefaultDuration" type="number" min="3" step="1" />
-        </div>
-        <div id="slidesList" class="stack"></div>
-      </div>
 
-      <div class="card" data-mode-panel="custom">
-        <div class="card-header">
-          <div>
-            <p class="eyebrow">HTML</p>
-            <h3>Diseño personalizado</h3>
+          <div class="card" data-mode-panel="custom">
+            <div class="card-header">
+              <div>
+                <p class="eyebrow">HTML</p>
+                <h3>Diseño personalizado</h3>
+              </div>
+            </div>
+            <div class="field">
+              <label for="customHtml">Bloque HTML (acepta estilos inline)</label>
+              <textarea id="customHtml" rows="6" placeholder="<div>Contenido</div>"></textarea>
+            </div>
           </div>
-        </div>
-        <div class="field">
-          <label for="customHtml">Bloque HTML (acepta estilos inline)</label>
-          <textarea id="customHtml" rows="6" placeholder="<div>Contenido</div>"></textarea>
-        </div>
-      </div>
 
-      <div class="card" data-mode-panel="sequence">
-        <div class="card-header">
-          <div>
-            <p class="eyebrow">Secuencia</p>
-            <h3>Lista de modos en loop</h3>
+          <div class="card" data-mode-panel="sequence">
+            <div class="card-header">
+              <div>
+                <p class="eyebrow">Secuencia</p>
+                <h3>Lista de modos en loop</h3>
+              </div>
+              <button class="ghost" id="addSequenceStep">Agregar paso</button>
+            </div>
+            <div class="field">
+              <label for="sequenceDefaultDuration">Duración por defecto (segundos)</label>
+              <input id="sequenceDefaultDuration" type="number" min="3" step="1" />
+            </div>
+            <div id="sequenceSteps" class="stack"></div>
+            <p class="menu-footer">Cada paso usa la configuración base del modo elegido. Puedes ajustar duración por paso.</p>
           </div>
-          <button class="ghost" id="addSequenceStep">Agregar paso</button>
-        </div>
-        <div class="field">
-          <label for="sequenceDefaultDuration">Duración por defecto (segundos)</label>
-          <input id="sequenceDefaultDuration" type="number" min="3" step="1" />
-        </div>
-        <div id="sequenceSteps" class="stack"></div>
-        <p class="menu-footer">Cada paso usa la configuración base del modo elegido. Puedes ajustar duración por paso.</p>
-      </div>
-
-      <div class="card">
-        <div class="card-header">
-          <div>
-            <p class="eyebrow">Catálogo</p>
-            <h3>Productos del sistema</h3>
-          </div>
-          <button class="ghost" id="refreshProducts">Actualizar</button>
-        </div>
-        <div id="productsList" class="product-grid"></div>
-        <p class="menu-footer">Pulsa “Carousel”, “Slide” o “Menú” para insertar el producto en el formulario activo.</p>
+        </section>
       </div>
     </section>
 

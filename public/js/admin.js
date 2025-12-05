@@ -39,6 +39,7 @@ const reloadButton = document.getElementById("reloadConfig");
 const statusText = document.getElementById("statusText");
 const productsList = document.getElementById("productsList");
 const refreshProductsBtn = document.getElementById("refreshProducts");
+const targetMenuSectionSelect = document.getElementById("targetMenuSection");
 
 const VIDEO_TEMPLATE = document.getElementById("video-item-template");
 const MENU_SECTION_TEMPLATE = document.getElementById("menu-section-template");
@@ -221,6 +222,7 @@ function renderMenuSections(sections = []) {
   menuSections.innerHTML = "";
   if (!sections.length) sections = [{ items: [] }];
   sections.forEach((section) => addMenuSection(section));
+  refreshMenuSectionOptions();
 }
 
 function addMenuSection(section = {}) {
@@ -251,9 +253,11 @@ function addMenuSection(section = {}) {
 
   node.querySelector(".remove").addEventListener("click", () => {
     node.remove();
+    refreshMenuSectionOptions();
   });
 
   menuSections.appendChild(node);
+  refreshMenuSectionOptions();
 }
 
 function renderCarouselItems(items = []) {
@@ -323,6 +327,25 @@ function addSequenceStep(step = {}) {
   sequenceSteps.appendChild(node);
 }
 
+function refreshMenuSectionOptions() {
+  targetMenuSectionSelect.innerHTML = "";
+  const sections = Array.from(menuSections.querySelectorAll(".menu-section-item"));
+  if (!sections.length) {
+    const opt = document.createElement("option");
+    opt.value = "";
+    opt.textContent = "Primera sección";
+    targetMenuSectionSelect.appendChild(opt);
+    return;
+  }
+  sections.forEach((section, idx) => {
+    const name = section.querySelector('input[name="name"]').value || `Sección ${idx + 1}`;
+    const opt = document.createElement("option");
+    opt.value = String(idx);
+    opt.textContent = name;
+    targetMenuSectionSelect.appendChild(opt);
+  });
+}
+
 function renderProducts(products = []) {
   productsList.innerHTML = "";
   if (!products.length) {
@@ -387,11 +410,15 @@ function renderProducts(products = []) {
     addToMenu.className = "ghost small";
     addToMenu.textContent = "Menú";
     addToMenu.addEventListener("click", () => {
-      let section = menuSections.querySelector(".menu-section-item");
-      if (!section) {
+      let sections = Array.from(menuSections.querySelectorAll(".menu-section-item"));
+      if (!sections.length) {
         addMenuSection({ items: [] });
-        section = menuSections.querySelector(".menu-section-item");
+        sections = Array.from(menuSections.querySelectorAll(".menu-section-item"));
       }
+      const targetIdx = targetMenuSectionSelect.value
+        ? Number(targetMenuSectionSelect.value)
+        : 0;
+      const section = sections[targetIdx] || sections[0];
       const itemsContainer = section.querySelector(".items");
       const itemNode = MENU_ITEM_TEMPLATE.content.firstElementChild.cloneNode(true);
       itemNode.querySelector('input[name="name"]').value = p.name || "";
