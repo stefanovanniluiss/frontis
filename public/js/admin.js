@@ -40,6 +40,10 @@ const statusText = document.getElementById("statusText");
 const productsList = document.getElementById("productsList");
 const refreshProductsBtn = document.getElementById("refreshProducts");
 const targetMenuSectionSelect = document.getElementById("targetMenuSection");
+const productSearchInput = document.getElementById("productSearch");
+const openCatalogBtn = document.getElementById("openCatalog");
+const closeCatalogBtn = document.getElementById("closeCatalog");
+const catalogModal = document.getElementById("catalogModal");
 
 const VIDEO_TEMPLATE = document.getElementById("video-item-template");
 const MENU_SECTION_TEMPLATE = document.getElementById("menu-section-template");
@@ -174,6 +178,7 @@ const state = {
   tv: 1,
   config: DEFAULT_CONFIG,
   products: [],
+  productFilter: "",
 };
 
 const setStatus = (text, tone = "info") => {
@@ -346,7 +351,16 @@ function refreshMenuSectionOptions() {
   });
 }
 
-function renderProducts(products = []) {
+function filteredProducts() {
+  const term = state.productFilter.trim().toLowerCase();
+  if (!term) return state.products;
+  return state.products.filter((p) =>
+    (p.name || "").toLowerCase().includes(term)
+  );
+}
+
+function renderProducts() {
+  const products = filteredProducts();
   productsList.innerHTML = "";
   if (!products.length) {
     productsList.innerHTML =
@@ -442,11 +456,12 @@ async function fetchProducts() {
     if (!res.ok) throw new Error("No se pudo cargar productos");
     const data = await res.json();
     state.products = data.items || [];
-    renderProducts(state.products);
+    renderProducts();
     setStatus("Productos listos.");
   } catch (error) {
     console.error(error);
-    renderProducts([]);
+    state.products = [];
+    renderProducts();
     setStatus("No se pudieron cargar productos.", "warn");
   }
 }
@@ -626,6 +641,10 @@ function wireEvents() {
   addSlideBtn.addEventListener("click", () => addSlide());
   addSequenceStepBtn.addEventListener("click", () => addSequenceStep());
   refreshProductsBtn.addEventListener("click", fetchProducts);
+  productSearchInput?.addEventListener("input", (e) => {
+    state.productFilter = e.target.value;
+    renderProducts();
+  });
 
   TV_BUTTONS.forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -638,6 +657,20 @@ function wireEvents() {
 
   saveButton.addEventListener("click", saveConfig);
   reloadButton.addEventListener("click", () => loadConfig(state.tv));
+  openCatalogBtn.addEventListener("click", () => {
+    catalogModal.classList.add("show");
+    state.productFilter = "";
+    if (productSearchInput) productSearchInput.value = "";
+    renderProducts();
+  });
+  closeCatalogBtn.addEventListener("click", () =>
+    catalogModal.classList.remove("show")
+  );
+  catalogModal
+    .querySelector(".modal-backdrop")
+    .addEventListener("click", () =>
+      catalogModal.classList.remove("show")
+    );
 }
 
 function init() {

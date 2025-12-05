@@ -296,8 +296,13 @@ textarea {
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 12px;
+}
+
+.modal-grid {
+  max-height: 60vh;
+  overflow: auto;
 }
 
 .product-card {
@@ -348,6 +353,56 @@ textarea {
 
 .product-card .actions button {
   flex: 1 1 48%;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+}
+
+.modal-dialog {
+  position: relative;
+  z-index: 51;
+  width: min(1100px, 94vw);
+  max-height: 88vh;
+  overflow: hidden;
+  background: #0b0f1e;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 18px;
+  display: grid;
+  gap: 12px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.modal .menu-footer {
+  margin: 0;
 }
 
 @media (max-width: 900px) {
