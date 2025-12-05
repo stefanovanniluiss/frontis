@@ -1,6 +1,10 @@
 export function createCarouselPlayer(wrapper, config = {}) {
   wrapper.classList.add("carousel");
 
+  const cardWidth = Number(config.cardWidth) || 320;
+  const rows = config.rows === 2 ? 2 : 1;
+  const rowOffsetPercent = Number(config.rowOffsetPercent) || 50;
+
   const header = document.createElement("div");
   header.className = "carousel-header";
   const title = document.createElement("div");
@@ -10,9 +14,6 @@ export function createCarouselPlayer(wrapper, config = {}) {
   ribbon.className = "pill";
   ribbon.textContent = config.ribbon || "Hecho en el barrio";
   header.append(title, ribbon);
-
-  const track = document.createElement("div");
-  track.className = "carousel-track";
 
   const items = Array.isArray(config.items) ? config.items : [];
 
@@ -26,7 +27,23 @@ export function createCarouselPlayer(wrapper, config = {}) {
 
   const duration =
     Math.max(12, Number(config.speedSeconds) || 32) + Math.max(0, items.length - 4);
-  track.style.animationDuration = `${duration}s`;
+  wrapper.style.setProperty("--card-width", `${cardWidth}px`);
+  wrapper.style.setProperty("--marquee-duration", `${duration}s`);
+
+  const buildTrack = (trackItems, idx) => {
+    const track = document.createElement("div");
+    track.className = "carousel-track";
+    if (rows === 2) {
+      track.dataset.row = String(idx + 1);
+      if (idx === 1) {
+        const offsetSeconds = (rowOffsetPercent / 100) * duration;
+        track.style.animationDelay = `-${offsetSeconds}s`;
+      }
+    }
+    // Duplicate items for a seamless marquee
+    [...trackItems, ...trackItems].forEach((item) => track.appendChild(renderCard(item)));
+    return track;
+  };
 
   const renderCard = (item) => {
     const card = document.createElement("div");
@@ -56,10 +73,19 @@ export function createCarouselPlayer(wrapper, config = {}) {
     return card;
   };
 
-  // Duplicate items for a seamless marquee
-  [...items, ...items].forEach((item) => track.appendChild(renderCard(item)));
-
-  wrapper.append(header, track);
+  if (rows === 2) {
+    const rowA = [];
+    const rowB = [];
+    items.forEach((item, i) => (i % 2 === 0 ? rowA : rowB).push(item));
+    const grid = document.createElement("div");
+    grid.className = "carousel-rows";
+    grid.appendChild(buildTrack(rowA.length ? rowA : items, 0));
+    grid.appendChild(buildTrack(rowB.length ? rowB : items, 1));
+    wrapper.append(header, grid);
+  } else {
+    const track = buildTrack(items, 0);
+    wrapper.append(header, track);
+  }
 
   return {
     destroy() {},

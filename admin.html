@@ -157,6 +157,23 @@
           <label for="carouselSpeed">Duración desplazamiento (segundos)</label>
           <input id="carouselSpeed" type="number" min="8" step="1" />
         </div>
+        <div class="three-col">
+          <div class="field">
+            <label for="carouselCardWidth">Ancho tarjeta (px)</label>
+            <input id="carouselCardWidth" type="number" min="180" step="10" />
+          </div>
+          <div class="field">
+            <label for="carouselRows">Filas</label>
+            <select id="carouselRows">
+              <option value="1">Una fila</option>
+              <option value="2">Dos filas</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="carouselRowOffset">Offset fila 2 (%)</label>
+            <input id="carouselRowOffset" type="number" min="0" max="100" step="5" />
+          </div>
+        </div>
         <div id="carouselItems" class="stack"></div>
       </div>
 

@@ -21,6 +21,9 @@ const addMenuSectionBtn = document.getElementById("addMenuSection");
 const carouselHeadlineInput = document.getElementById("carouselHeadline");
 const carouselRibbonInput = document.getElementById("carouselRibbon");
 const carouselSpeedInput = document.getElementById("carouselSpeed");
+const carouselCardWidthInput = document.getElementById("carouselCardWidth");
+const carouselRowsInput = document.getElementById("carouselRows");
+const carouselRowOffsetInput = document.getElementById("carouselRowOffset");
 const carouselItems = document.getElementById("carouselItems");
 const addCarouselItemBtn = document.getElementById("addCarouselItem");
 
@@ -121,6 +124,9 @@ const DEFAULT_CONFIG = {
     headline: "Pasa y pruébalo",
     ribbon: "Café de especialidad",
     speedSeconds: 32,
+    cardWidth: 320,
+    rows: 1,
+    rowOffsetPercent: 50,
     items: [
       {
         title: "Latte con Avena",
@@ -561,6 +567,9 @@ function applyConfig(config) {
   carouselHeadlineInput.value = carousel.headline || "";
   carouselRibbonInput.value = carousel.ribbon || "";
   carouselSpeedInput.value = carousel.speedSeconds || 32;
+  carouselCardWidthInput.value = carousel.cardWidth || 320;
+  carouselRowsInput.value = carousel.rows === 2 ? "2" : "1";
+  carouselRowOffsetInput.value = carousel.rowOffsetPercent ?? 50;
 
   renderVideoList(config.video?.playlist || []);
   renderMenuSections(menu.sections || []);
@@ -594,6 +603,9 @@ const gatherConfig = () => ({
     headline: carouselHeadlineInput.value.trim(),
     ribbon: carouselRibbonInput.value.trim(),
     speedSeconds: Number(carouselSpeedInput.value) || 32,
+    cardWidth: Number(carouselCardWidthInput.value) || 320,
+    rows: Number(carouselRowsInput.value) === 2 ? 2 : 1,
+    rowOffsetPercent: Number(carouselRowOffsetInput.value) || 50,
     items: readCarouselItems(),
   },
   slides: {

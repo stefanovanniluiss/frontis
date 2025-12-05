@@ -58,6 +58,9 @@
     "headline": "Vitrina que no se detiene",
     "ribbon": "Pasa y pruébalo",
     "speedSeconds": 32,
+    "cardWidth": 320,
+    "rows": 1,
+    "rowOffsetPercent": 50,
     "items": [
       {
         "title": "Latte con Avena",

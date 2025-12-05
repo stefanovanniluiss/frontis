@@ -104,6 +104,9 @@ const DEFAULT_CONFIG = {
     headline: "Pasa y pruébalo",
     ribbon: "Café de especialidad",
     speedSeconds: 36,
+    cardWidth: 320,
+    rows: 1,
+    rowOffsetPercent: 50,
     items: [
       {
         title: "Latte con Avena",

@@ -59,6 +59,9 @@
     "headline": "Recomendados",
     "ribbon": "Vitrina",
     "speedSeconds": 30,
+    "cardWidth": 300,
+    "rows": 2,
+    "rowOffsetPercent": 50,
     "items": [
       {
         "title": "Matcha latte",
