@@ -186,6 +186,15 @@ const setStatus = (text, tone = "info") => {
   statusText.dataset.tone = tone;
 };
 
+const flashButton = (btn) => {
+  if (!btn) return;
+  btn.classList.remove("clicked");
+  // force reflow
+  void btn.offsetWidth;
+  btn.classList.add("clicked");
+  setTimeout(() => btn.classList.remove("clicked"), 220);
+};
+
 const mergeConfig = (incoming = {}) => ({
   ...DEFAULT_CONFIG,
   ...incoming,
@@ -407,6 +416,8 @@ function renderProducts() {
         meta: p.description,
         image: p.image_url,
       });
+      setStatus(`Agregado a carousel: ${p.name || "Producto"}.`);
+      flashButton(addToCarousel);
     });
 
     const addToSlides = document.createElement("button");
@@ -418,6 +429,8 @@ function renderProducts() {
         src: p.image_url,
         duration: 8,
       });
+      setStatus(`Agregado a slides: ${p.name || "Producto"}.`);
+      flashButton(addToSlides);
     });
 
     const addToMenu = document.createElement("button");
@@ -440,6 +453,8 @@ function renderProducts() {
       itemNode.querySelector('input[name="description"]').value = p.description || "";
       itemNode.querySelector(".remove").addEventListener("click", () => itemNode.remove());
       itemsContainer.appendChild(itemNode);
+      setStatus(`Agregado al menú: ${p.name || "Producto"}.`);
+      flashButton(addToMenu);
     });
 
     actions.append(addToCarousel, addToSlides, addToMenu);
@@ -634,6 +649,10 @@ async function saveConfig() {
 }
 
 function wireEvents() {
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest("button");
+    if (btn) flashButton(btn);
+  });
   modeSelect.addEventListener("change", () => togglePanels(modeSelect.value));
   addVideoBtn.addEventListener("click", () => addVideoItem());
   addMenuSectionBtn.addEventListener("click", () => addMenuSection());
