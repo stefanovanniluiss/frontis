@@ -4,6 +4,7 @@ export function createCarouselPlayer(wrapper, config = {}) {
   const cardWidth = Number(config.cardWidth) || 320;
   const rows = config.rows === 2 ? 2 : 1;
   const rowOffsetPercent = Number(config.rowOffsetPercent) || 50;
+  const animations = [];
 
   const header = document.createElement("div");
   header.className = "carousel-header";
@@ -28,7 +29,6 @@ export function createCarouselPlayer(wrapper, config = {}) {
   const duration =
     Math.max(12, Number(config.speedSeconds) || 32) + Math.max(0, items.length - 4);
   wrapper.style.setProperty("--card-width", `${cardWidth}px`);
-  wrapper.style.setProperty("--marquee-duration", `${duration}s`);
 
   const buildTrack = (trackItems, idx) => {
     const track = document.createElement("div");
@@ -42,6 +42,24 @@ export function createCarouselPlayer(wrapper, config = {}) {
     }
     // Duplicate items for a seamless marquee
     [...trackItems, ...trackItems].forEach((item) => track.appendChild(renderCard(item)));
+
+    requestAnimationFrame(() => {
+      const half = track.scrollWidth / 2;
+      const anim = track.animate(
+        [
+          { transform: "translateX(0)" },
+          { transform: `translateX(-${half}px)` },
+        ],
+        {
+          duration: duration * 1000,
+          iterations: Infinity,
+          easing: "linear",
+        }
+      );
+      animations.push(anim);
+      track.addEventListener("pointerenter", () => anim.pause());
+      track.addEventListener("pointerleave", () => anim.play());
+    });
     return track;
   };
 
@@ -88,6 +106,8 @@ export function createCarouselPlayer(wrapper, config = {}) {
   }
 
   return {
-    destroy() {},
+    destroy() {
+      animations.forEach((a) => a.cancel());
+    },
   };
 }
