@@ -33,12 +33,12 @@ export function createCarouselPlayer(wrapper, config = {}) {
   const buildTrack = (trackItems, idx) => {
     const track = document.createElement("div");
     track.className = "carousel-track";
+    const offsetMs =
+      rows === 2 && idx === 1
+        ? Math.max(0, (rowOffsetPercent / 100) * duration * 1000)
+        : 0;
     if (rows === 2) {
       track.dataset.row = String(idx + 1);
-      if (idx === 1) {
-        const offsetSeconds = (rowOffsetPercent / 100) * duration;
-        track.style.animationDelay = `-${offsetSeconds}s`;
-      }
     }
     // Duplicate items for a seamless marquee
     [...trackItems, ...trackItems].forEach((item) => track.appendChild(renderCard(item)));
@@ -56,6 +56,9 @@ export function createCarouselPlayer(wrapper, config = {}) {
           easing: "linear",
         }
       );
+      if (offsetMs > 0) {
+        anim.currentTime = offsetMs;
+      }
       animations.push(anim);
       track.addEventListener("pointerenter", () => anim.pause());
       track.addEventListener("pointerleave", () => anim.play());
