@@ -405,9 +405,32 @@ function renderProducts() {
     desc.className = "desc";
     desc.textContent = p.description || "";
 
-    const price = document.createElement("div");
-    price.className = "price";
-    price.textContent = p.price_clp ? `$${p.price_clp}` : "";
+    const priceRow = document.createElement("div");
+    priceRow.className = "price-row";
+    const priceLabel = document.createElement("div");
+    priceLabel.className = "price";
+    priceLabel.textContent = "Precio:";
+    const priceInput = document.createElement("input");
+    priceInput.type = "number";
+    priceInput.min = "0";
+    priceInput.step = "100";
+    priceInput.value = p.price_clp ?? "";
+    const savePrice = document.createElement("button");
+    savePrice.className = "ghost small";
+    savePrice.textContent = "Guardar precio";
+    savePrice.addEventListener("click", async () => {
+      const newPrice = Number(priceInput.value);
+      if (Number.isNaN(newPrice)) {
+        setStatus("Precio inválido.", "warn");
+        return;
+      }
+      const ok = await updateProductPrice(p.id, newPrice);
+      if (ok) {
+        setStatus(`Precio actualizado: $${newPrice}`);
+        flashButton(savePrice);
+      }
+    });
+    priceRow.append(priceLabel, priceInput, savePrice);
 
     const actions = document.createElement("div");
     actions.className = "actions";
@@ -465,9 +488,32 @@ function renderProducts() {
 
     actions.append(addToCarousel, addToSlides, addToMenu);
 
-    card.append(thumb, name, desc, price, actions);
+    card.append(thumb, name, desc, priceRow, actions);
     productsList.appendChild(card);
   });
+}
+
+async function updateProductPrice(id, price) {
+  if (!id) return false;
+  try {
+    const res = await fetch("/api/products.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id, price_clp: price }),
+    });
+    if (!res.ok) throw new Error("No se pudo actualizar el precio");
+    const data = await res.json();
+    if (data.error) throw new Error(data.error);
+    state.products = state.products.map((prod) =>
+      prod.id === id ? { ...prod, price_clp: price } : prod
+    );
+    renderProducts();
+    return true;
+  } catch (error) {
+    console.error(error);
+    setStatus("No se pudo actualizar el precio en la base de datos.", "error");
+    return false;
+  }
 }
 
 async function fetchProducts() {

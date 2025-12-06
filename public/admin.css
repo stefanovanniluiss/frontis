@@ -367,6 +367,17 @@ textarea {
   font-weight: 700;
 }
 
+.product-card .price-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.product-card .price-row input {
+  max-width: 120px;
+  padding: 8px 10px;
+}
+
 .product-card .actions {
   display: flex;
   gap: 8px;
