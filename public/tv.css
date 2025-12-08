@@ -190,18 +190,40 @@ body.portrait #tv-root {
   background: var(--card);
   border: 1px solid var(--border);
   backdrop-filter: blur(8px);
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 8px;
 }
 
 .menu-section h3 {
-  margin: 0 0 12px 0;
-  font-size: clamp(20px, 1.6vw, 28px);
+  margin: 0 0 8px 0;
+  font-size: clamp(22px, 1.8vw, 30px);
   font-family: var(--font-display);
   letter-spacing: -0.01em;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.menu-items {
+.menu-items-viewport {
+  overflow: hidden;
+  position: relative;
+  max-height: 72vh;
+}
+
+.menu-scroll-track {
   display: grid;
   gap: 12px;
+}
+
+.menu-scroll-track.auto-scroll {
+  animation: menuScroll var(--scroll-duration, 18s) linear infinite;
+}
+
+.menu-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: start;
 }
 
 .menu-item {
@@ -233,6 +255,15 @@ body.portrait #tv-root {
   margin-top: 18px;
   color: var(--muted);
   font-size: clamp(14px, 1.2vw, 18px);
+}
+
+@keyframes menuScroll {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(calc(-1 * var(--scroll-distance, 0px)));
+  }
 }
 
 /* Carousel */

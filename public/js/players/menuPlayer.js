@@ -46,8 +46,11 @@ export function createMenuPlayer(wrapper, config = {}) {
       heading.textContent = section.name || "Sección";
       sectionEl.appendChild(heading);
 
-      const itemsEl = document.createElement("div");
-      itemsEl.className = "menu-items";
+      const viewport = document.createElement("div");
+      viewport.className = "menu-items-viewport";
+      const track = document.createElement("div");
+      track.className = "menu-scroll-track";
+      viewport.appendChild(track);
 
       (section.items || []).forEach((item) => {
         const itemEl = document.createElement("div");
@@ -65,11 +68,31 @@ export function createMenuPlayer(wrapper, config = {}) {
         price.className = "price";
         price.textContent = item.price || "";
         itemEl.append(info, price);
-        itemsEl.appendChild(itemEl);
+        track.appendChild(itemEl);
       });
 
-      sectionEl.appendChild(itemsEl);
+      sectionEl.appendChild(viewport);
       grid.appendChild(sectionEl);
+
+      requestAnimationFrame(() => {
+        const diff = track.scrollHeight - viewport.clientHeight;
+        if (diff > 20) {
+          const trackWrap = document.createElement("div");
+          trackWrap.className = "menu-scroll-track";
+          // Duplicate items for seamless scroll
+          trackWrap.appendChild(track);
+          const clone = track.cloneNode(true);
+          trackWrap.appendChild(clone);
+          viewport.innerHTML = "";
+          viewport.appendChild(trackWrap);
+
+          const distance = track.scrollHeight;
+          const duration = Math.max(12, distance / 25);
+          trackWrap.style.setProperty("--scroll-distance", `${distance}px`);
+          trackWrap.style.setProperty("--scroll-duration", `${duration}s`);
+          trackWrap.classList.add("auto-scroll");
+        }
+      });
     });
   }
 
