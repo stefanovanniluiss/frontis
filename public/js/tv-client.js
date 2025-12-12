@@ -165,9 +165,9 @@ const DEFAULT_CONFIG = {
     </div>`,
   },
   drinks: {
-    title: "Ahora también brindamos en Viasanto",
-    subtitle: "Spritz, sours, gin & tonics, y mocktails premium.",
-    heroImage: "/media/bar-bg.jpg",
+    title: "Viasanto ahora tiene bar.",
+    subtitle: "Spritz, sours, gin preparados al momento.",
+    heroImage: "/img/viasanto/nightviasa.jpg",
     highlight: "Happy Hour 17:00 - 20:00",
     items: [
       {
