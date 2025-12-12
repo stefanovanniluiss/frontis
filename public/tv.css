@@ -475,6 +475,7 @@ body.portrait #tv-root {
 }
 .drinks-pane.left {
   background: linear-gradient(135deg, #ffffff, #f6f5ff);
+  transform: none;
 }
 .drinks-pane.right {
   background: linear-gradient(135deg, #ffffff, #fdf3ec);
@@ -504,9 +505,10 @@ body.portrait #tv-root {
 }
 .drinks-pane.left .drinks-inner {
   transform: skewX(16deg);
+  transform: none;
 }
 .drinks-inner-right {
-  transform: none;
+  transform: skewX(16deg);
   padding: 32px 30px;
   justify-content: center;
 }
@@ -550,15 +552,13 @@ body.portrait #tv-root {
   height: 100%;
   background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.8), transparent 60%),
     linear-gradient(180deg, #ffffff, #f8f4ff);
-  transform: skewX(-16deg);
-  transform-origin: center;
+  transform: none;
 }
 .drinks-track-light {
   display: grid;
   gap: 16px;
   padding: 20px;
   animation: vertLoopC 22s linear infinite;
-  transform: skewX(16deg);
 }
 .drinks-card-light {
   position: relative;
@@ -635,10 +635,10 @@ body.portrait #tv-root {
     transform: skewX(-10deg);
   }
   .drinks-pane.left .drinks-inner {
-    transform: skewX(10deg);
+    transform: none;
   }
   .drinks-pane.right .drinks-inner-right {
-    transform: none;
+    transform: skewX(10deg);
   }
   .drinks-hero-photo {
     height: 50vh;
