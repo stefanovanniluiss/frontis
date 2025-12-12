@@ -432,7 +432,7 @@ body.portrait #tv-root {
   padding: 24px;
 }
 
-/* Drinks mode (light, skewed) */
+/* Drinks mode (light, skewed, two columns) */
 .drinks-hero.drinks-light {
   position: absolute;
   inset: 0;
@@ -444,7 +444,6 @@ body.portrait #tv-root {
   position: absolute;
   inset: 0;
   background:
-    repeating-linear-gradient(-65deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.02) 14px, transparent 14px, transparent 30px),
     radial-gradient(circle at 15% 20%, rgba(255, 120, 150, 0.18), transparent 45%),
     radial-gradient(circle at 85% 80%, rgba(255, 211, 133, 0.18), transparent 50%),
     linear-gradient(135deg, #f7f7fb, #fdfdfd);
@@ -463,23 +462,22 @@ body.portrait #tv-root {
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: 1.35fr 1fr;
+  grid-template-columns: 1.3fr 1fr;
   width: 100%;
   height: 100%;
 }
 .drinks-pane {
   position: relative;
   overflow: hidden;
+  transform: skewX(-16deg);
+  transform-origin: center;
   border-right: 1px solid rgba(0, 0, 0, 0.06);
 }
 .drinks-pane.left {
   background: linear-gradient(135deg, #ffffff, #f6f5ff);
-  transform: none;
 }
 .drinks-pane.right {
   background: linear-gradient(135deg, #ffffff, #fdf3ec);
-  transform: skewX(-16deg);
-  transform-origin: center;
 }
 .drinks-pane::after {
   content: "";
@@ -505,15 +503,12 @@ body.portrait #tv-root {
   color: #15151f;
 }
 .drinks-pane.left .drinks-inner {
-  transform: none;
+  transform: skewX(16deg);
 }
 .drinks-inner-right {
-  transform: skewX(16deg);
+  transform: none;
   padding: 32px 30px;
   justify-content: center;
-}
-.drinks-left-inner {
-  transform: none;
 }
 .drinks-hero-copy {
   margin-bottom: 28px;
@@ -560,7 +555,7 @@ body.portrait #tv-root {
   display: grid;
   gap: 16px;
   padding: 20px;
-  animation: drinksLoopLight 22s linear infinite;
+  animation: vertLoopC 22s linear infinite;
 }
 .drinks-card-light {
   position: relative;
@@ -614,7 +609,7 @@ body.portrait #tv-root {
   font-weight: 800;
   font-size: 14px;
 }
-@keyframes drinksLoopLight {
+@keyframes vertLoopC {
   from {
     transform: translateY(0);
   }
@@ -637,10 +632,10 @@ body.portrait #tv-root {
     transform: skewX(-10deg);
   }
   .drinks-pane.left .drinks-inner {
-    transform: none;
+    transform: skewX(10deg);
   }
   .drinks-pane.right .drinks-inner-right {
-    transform: skewX(10deg);
+    transform: none;
   }
   .drinks-hero-photo {
     height: 50vh;
