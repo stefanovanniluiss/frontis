@@ -16,6 +16,12 @@ export function createDrinksPlayer(wrapper, config = {}, global = {}) {
 
   const heroCopy = document.createElement("div");
   heroCopy.className = "drinks-hero-copy";
+  if (config.highlight) {
+    const heroHighlight = document.createElement("div");
+    heroHighlight.className = "drinks-hero-highlight";
+    heroHighlight.textContent = config.highlight;
+    heroCopy.appendChild(heroHighlight);
+  }
   const heroTitle = document.createElement("div");
   heroTitle.className = "drinks-hero-title";
   heroTitle.textContent = config.title || "Viasanto ahora tiene bar.";
@@ -70,7 +76,7 @@ export function createDrinksPlayer(wrapper, config = {}, global = {}) {
       price.className = "price";
       price.textContent = item.price || "";
       const desc = document.createElement("div");
-      desc.style.color = "#4c5065";
+      desc.className = "desc";
       desc.textContent = item.description || "";
       info.append(t, price, desc);
       card.append(img, badge, info);
