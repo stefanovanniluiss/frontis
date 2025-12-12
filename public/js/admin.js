@@ -523,6 +523,21 @@ function renderProducts() {
       flashButton(addToSlides);
     });
 
+    const addToDrinks = document.createElement("button");
+    addToDrinks.className = "ghost small";
+    addToDrinks.textContent = "Drinks";
+    addToDrinks.addEventListener("click", () => {
+      addDrink({
+        image: p.image_url,
+        title: p.name,
+        price: p.price_clp ? `$${p.price_clp}` : "",
+        description: p.description,
+        badge: "Drink",
+      });
+      setStatus(`Agregado a drinks: ${p.name || "Producto"}.`);
+      flashButton(addToDrinks);
+    });
+
     const addToMenu = document.createElement("button");
     addToMenu.className = "ghost small";
     addToMenu.textContent = "Menú";
@@ -547,7 +562,7 @@ function renderProducts() {
       flashButton(addToMenu);
     });
 
-    actions.append(addToCarousel, addToSlides, addToMenu);
+    actions.append(addToCarousel, addToSlides, addToDrinks, addToMenu);
 
     card.append(thumb, name, desc, priceRow, actions);
     productsList.appendChild(card);

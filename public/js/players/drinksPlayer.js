@@ -12,7 +12,7 @@ export function createDrinksPlayer(wrapper, config = {}, global = {}) {
   const leftPane = document.createElement("div");
   leftPane.className = "drinks-pane drinks-left";
   const leftInner = document.createElement("div");
-  leftInner.className = "drinks-inner";
+  leftInner.className = "drinks-inner drinks-left-inner";
 
   const heroCopy = document.createElement("div");
   heroCopy.className = "drinks-hero-copy";
