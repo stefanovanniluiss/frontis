@@ -252,6 +252,7 @@ const mergeConfig = (incoming = {}) => ({
   carousel: { ...DEFAULT_CONFIG.carousel, ...(incoming.carousel || {}) },
   slides: { ...DEFAULT_CONFIG.slides, ...(incoming.slides || {}) },
   custom: { ...DEFAULT_CONFIG.custom, ...(incoming.custom || {}) },
+  drinks: { ...DEFAULT_CONFIG.drinks, ...(incoming.drinks || {}) },
   sequence: { ...DEFAULT_CONFIG.sequence, ...(incoming.sequence || {}) },
 });
 

@@ -221,6 +221,35 @@
         <div id="sequenceSteps" class="stack"></div>
         <p class="menu-footer">Cada paso usa la configuración base del modo elegido. Puedes ajustar duración por paso.</p>
       </div>
+
+      <div class="card" data-mode-panel="drinks">
+        <div class="card-header">
+          <div>
+            <p class="eyebrow">Drinks / Bar</p>
+            <h3>Hero + carrusel vertical</h3>
+          </div>
+          <button class="ghost" id="addDrink">Agregar bebida</button>
+        </div>
+        <div class="field">
+          <label for="drinksTitle">Título</label>
+          <input id="drinksTitle" type="text" placeholder="Ahora también brindamos en Viasanto" />
+        </div>
+        <div class="field">
+          <label for="drinksSubtitle">Subtítulo</label>
+          <input id="drinksSubtitle" type="text" />
+        </div>
+        <div class="two-col">
+          <div class="field">
+            <label for="drinksHighlight">Destacado (ej: Happy Hour)</label>
+            <input id="drinksHighlight" type="text" placeholder="Happy Hour 17:00 - 20:00" />
+          </div>
+          <div class="field">
+            <label for="drinksHeroImage">Imagen de fondo (URL)</label>
+            <input id="drinksHeroImage" type="text" placeholder="/media/bar-bg.jpg" />
+          </div>
+        </div>
+        <div id="drinksList" class="stack"></div>
+      </div>
     </section>
 
     <section class="status">
