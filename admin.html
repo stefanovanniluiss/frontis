@@ -50,6 +50,7 @@
             <option value="slides">Diapositivas</option>
             <option value="custom">HTML personalizado</option>
             <option value="sequence">Secuencia de modos</option>
+            <option value="drinks">Drinks / Bar</option>
           </select>
         </div>
         <div class="two-col">
@@ -353,12 +354,41 @@
             <option value="menu">Menú</option>
             <option value="slides">Slides</option>
             <option value="custom">HTML</option>
+            <option value="drinks">Drinks</option>
           </select>
         </div>
         <div class="field">
           <label>Duración (s)</label>
           <input name="durationSeconds" type="number" min="3" step="1" />
         </div>
+      </div>
+      <button class="link remove">Quitar</button>
+    </div>
+  </template>
+
+  <template id="drink-item-template">
+    <div class="mini-card drink-item">
+      <div class="field">
+        <label>Imagen</label>
+        <input name="image" type="text" placeholder="/media/drink1.jpg" />
+      </div>
+      <div class="two-col">
+        <div class="field">
+          <label>Badge</label>
+          <input name="badge" type="text" placeholder="Spritz" />
+        </div>
+        <div class="field">
+          <label>Precio</label>
+          <input name="price" type="text" placeholder="$6.900" />
+        </div>
+      </div>
+      <div class="field">
+        <label>Título</label>
+        <input name="title" type="text" />
+      </div>
+      <div class="field">
+        <label>Descripción</label>
+        <input name="description" type="text" />
       </div>
       <button class="link remove">Quitar</button>
     </div>

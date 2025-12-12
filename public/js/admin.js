@@ -47,6 +47,12 @@ const productSearchInput = document.getElementById("productSearch");
 const openCatalogBtn = document.getElementById("openCatalog");
 const closeCatalogBtn = document.getElementById("closeCatalog");
 const catalogModal = document.getElementById("catalogModal");
+const drinksTitleInput = document.getElementById("drinksTitle");
+const drinksSubtitleInput = document.getElementById("drinksSubtitle");
+const drinksHighlightInput = document.getElementById("drinksHighlight");
+const drinksHeroImageInput = document.getElementById("drinksHeroImage");
+const drinksList = document.getElementById("drinksList");
+const addDrinkBtn = document.getElementById("addDrink");
 
 const VIDEO_TEMPLATE = document.getElementById("video-item-template");
 const MENU_SECTION_TEMPLATE = document.getElementById("menu-section-template");
@@ -54,6 +60,7 @@ const MENU_ITEM_TEMPLATE = document.getElementById("menu-item-template");
 const CAROUSEL_TEMPLATE = document.getElementById("carousel-item-template");
 const SLIDE_TEMPLATE = document.getElementById("slide-item-template");
 const SEQUENCE_TEMPLATE = document.getElementById("sequence-step-template");
+const DRINK_TEMPLATE = document.getElementById("drink-item-template");
 
 const SAMPLE_IMAGES = {
   amber:
@@ -168,6 +175,42 @@ const DEFAULT_CONFIG = {
   },
   custom: {
     html: "<div style='display:grid;place-items:center;height:100%;font-size:28px;color:#f6f8fb;'>Personaliza este bloque en el panel.</div>",
+  },
+  drinks: {
+    title: "Ahora también brindamos en Viasanto",
+    subtitle: "Spritz, sours, gin & tonics, y mocktails premium.",
+    heroImage: "/media/bar-bg.jpg",
+    highlight: "Happy Hour 17:00 - 20:00",
+    items: [
+      {
+        image: "/media/drink1.jpg",
+        badge: "Spritz",
+        title: "Spritz Maracuyá",
+        price: "$6.900",
+        description: "Prosecco, maracuyá fresco, bitter de naranja.",
+      },
+      {
+        image: "/media/drink2.jpg",
+        badge: "Gin & Tónica",
+        title: "Botánico",
+        price: "$6.800",
+        description: "Gin cítrico, tónica premium, enebro, pepino.",
+      },
+      {
+        image: "/media/drink3.jpg",
+        badge: "Sour",
+        title: "Sour Maqui",
+        price: "$6.800",
+        description: "Pisco, limón sutil, almíbar de maqui.",
+      },
+      {
+        image: "/media/drink4.jpg",
+        badge: "Mocktail",
+        title: "Cítrico sin alcohol",
+        price: "$5.200",
+        description: "Naranja, pomelo, tónica especiada.",
+      },
+    ],
   },
   sequence: {
     defaultDuration: 20,
@@ -304,6 +347,12 @@ function renderSlides(slides = [], defaultDuration = 8) {
   slides.forEach((slide) => addSlide(slide));
 }
 
+function renderDrinks(items = []) {
+  drinksList.innerHTML = "";
+  if (!items.length) items = [{}];
+  items.forEach((drink) => addDrink(drink));
+}
+
 function renderSequence(steps = [], defaultDuration = 20) {
   sequenceSteps.innerHTML = "";
   sequenceDefaultDurationInput.value = defaultDuration;
@@ -336,6 +385,17 @@ function addSlide(slide = {}) {
 
   node.querySelector(".remove").addEventListener("click", () => node.remove());
   slidesList.appendChild(node);
+}
+
+function addDrink(drink = {}) {
+  const node = DRINK_TEMPLATE.content.firstElementChild.cloneNode(true);
+  node.querySelector('input[name="image"]').value = drink.image || "";
+  node.querySelector('input[name="badge"]').value = drink.badge || "";
+  node.querySelector('input[name="price"]').value = drink.price || "";
+  node.querySelector('input[name="title"]').value = drink.title || "";
+  node.querySelector('input[name="description"]').value = drink.description || "";
+  node.querySelector(".remove").addEventListener("click", () => node.remove());
+  drinksList.appendChild(node);
 }
 
 function addSequenceStep(step = {}) {
@@ -622,6 +682,11 @@ function applyConfig(config) {
   renderCarouselItems(carousel.items || []);
   renderSlides(config.slides?.slides || [], config.slides?.defaultDuration || 8);
   customHtmlInput.value = config.custom?.html || "";
+  drinksTitleInput.value = config.drinks?.title || "";
+  drinksSubtitleInput.value = config.drinks?.subtitle || "";
+  drinksHighlightInput.value = config.drinks?.highlight || "";
+  drinksHeroImageInput.value = config.drinks?.heroImage || "";
+  renderDrinks(config.drinks?.items || []);
   renderSequence(config.sequence?.steps || [], config.sequence?.defaultDuration || 20);
   orientationSelect.value = config.orientation || "landscape";
 
@@ -659,6 +724,19 @@ const gatherConfig = () => ({
     slides: readSlides(),
   },
   custom: { html: customHtmlInput.value },
+  drinks: {
+    title: drinksTitleInput.value.trim(),
+    subtitle: drinksSubtitleInput.value.trim(),
+    highlight: drinksHighlightInput.value.trim(),
+    heroImage: drinksHeroImageInput.value.trim() || "/media/bar-bg.jpg",
+    items: Array.from(drinksList.querySelectorAll(".drink-item")).map((node) => ({
+      image: node.querySelector('input[name="image"]').value.trim(),
+      badge: node.querySelector('input[name="badge"]').value.trim(),
+      price: node.querySelector('input[name="price"]').value.trim(),
+      title: node.querySelector('input[name="title"]').value.trim(),
+      description: node.querySelector('input[name="description"]').value.trim(),
+    })).filter((d) => d.image || d.title || d.price || d.description),
+  },
   sequence: {
     defaultDuration: Number(sequenceDefaultDurationInput.value) || 20,
     steps: readSequenceSteps(),
@@ -718,6 +796,7 @@ function wireEvents() {
   addSlideBtn.addEventListener("click", () => addSlide());
   addSequenceStepBtn.addEventListener("click", () => addSequenceStep());
   refreshProductsBtn.addEventListener("click", fetchProducts);
+  addDrinkBtn.addEventListener("click", () => addDrink());
   productSearchInput?.addEventListener("input", (e) => {
     state.productFilter = e.target.value;
     renderProducts();

@@ -3,6 +3,7 @@ import { createMenuPlayer } from "./players/menuPlayer.js";
 import { createCarouselPlayer } from "./players/carouselPlayer.js";
 import { createSlidesPlayer } from "./players/slidesPlayer.js";
 import { createCustomPlayer } from "./players/customPlayer.js";
+import { createDrinksPlayer } from "./players/drinksPlayer.js";
 
 const tvId = window.TV_ID || 1;
 const root = document.getElementById("tv-root");
@@ -25,6 +26,7 @@ const players = {
   carousel: createCarouselPlayer,
   slides: createSlidesPlayer,
   custom: createCustomPlayer,
+  drinks: createDrinksPlayer,
 };
 
 const fallbackImage =
@@ -162,6 +164,42 @@ const DEFAULT_CONFIG = {
       </div>
     </div>`,
   },
+  drinks: {
+    title: "Ahora también brindamos en Viasanto",
+    subtitle: "Spritz, sours, gin & tonics, y mocktails premium.",
+    heroImage: "/media/bar-bg.jpg",
+    highlight: "Happy Hour 17:00 - 20:00",
+    items: [
+      {
+        image: "/media/drink1.jpg",
+        badge: "Spritz",
+        title: "Spritz Maracuyá",
+        price: "$6.900",
+        description: "Prosecco, maracuyá fresco, bitter de naranja.",
+      },
+      {
+        image: "/media/drink2.jpg",
+        badge: "Gin & Tónica",
+        title: "Botánico",
+        price: "$6.800",
+        description: "Gin cítrico, tónica premium, enebro, pepino.",
+      },
+      {
+        image: "/media/drink3.jpg",
+        badge: "Sour",
+        title: "Sour Maqui",
+        price: "$6.800",
+        description: "Pisco, limón sutil, almíbar de maqui.",
+      },
+      {
+        image: "/media/drink4.jpg",
+        badge: "Mocktail",
+        title: "Cítrico sin alcohol",
+        price: "$5.200",
+        description: "Naranja, pomelo, tónica especiada.",
+      },
+    ],
+  },
   sequence: {
     defaultDuration: 20,
     steps: [],
@@ -187,6 +225,7 @@ function mergeConfig(incoming = {}) {
     },
     slides: { ...DEFAULT_CONFIG.slides, ...(incoming.slides || {}) },
     custom: { ...DEFAULT_CONFIG.custom, ...(incoming.custom || {}) },
+    drinks: { ...DEFAULT_CONFIG.drinks, ...(incoming.drinks || {}) },
     sequence: { ...DEFAULT_CONFIG.sequence, ...(incoming.sequence || {}) },
   };
 }
