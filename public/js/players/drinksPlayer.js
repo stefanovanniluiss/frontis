@@ -49,8 +49,14 @@ export function createDrinksPlayer(wrapper, config = {}, global = {}) {
   const track = document.createElement("div");
   track.className = "drinks-track-light";
 
+  const cardHeight = Number(config.cardHeight) || 300;
+  const cardGap = 18;
+  carousel.style.setProperty("--drinks-card-height", `${cardHeight}px`);
+  carousel.style.setProperty("--drinks-card-gap", `${cardGap}px`);
+
   const items = Array.isArray(config.items) ? config.items : [];
-  const list = items.length ? [...items, ...items] : [];
+  const list =
+    items.length > 1 ? [...items, items[0]] : items.length === 1 ? items : [];
 
   if (!list.length) {
     const empty = document.createElement("div");
@@ -90,6 +96,18 @@ export function createDrinksPlayer(wrapper, config = {}, global = {}) {
 
   wrap.append(leftPane, rightPane);
   wrapper.appendChild(wrap);
+
+  // Endless loop distance matches the number of real items, clone only bridges the loop.
+  const loopDistance =
+    items.length > 1 ? items.length * (cardHeight + cardGap) : 0;
+  const loopDuration = Math.max(14, (items.length || 1) * 5);
+  track.style.setProperty("--drinks-loop-distance", `${loopDistance}px`);
+  track.style.setProperty("--drinks-loop-duration", `${loopDuration}s`);
+  if (items.length > 1) {
+    track.classList.add("looping");
+  } else {
+    track.classList.add("single");
+  }
 
   return { destroy() {} };
 }

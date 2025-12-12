@@ -169,6 +169,7 @@ const DEFAULT_CONFIG = {
     subtitle: "Spritz, sours, gin preparados al momento.",
     heroImage: "/img/viasanto/nightviasa.jpg",
     highlight: "Happy Hour 17:00 - 20:00",
+    cardHeight: 300,
     items: [
       {
         image: "/media/drink1.jpg",

@@ -51,6 +51,7 @@ const drinksTitleInput = document.getElementById("drinksTitle");
 const drinksSubtitleInput = document.getElementById("drinksSubtitle");
 const drinksHighlightInput = document.getElementById("drinksHighlight");
 const drinksHeroImageInput = document.getElementById("drinksHeroImage");
+const drinksCardHeightInput = document.getElementById("drinksCardHeight");
 const drinksList = document.getElementById("drinksList");
 const addDrinkBtn = document.getElementById("addDrink");
 
@@ -181,6 +182,7 @@ const DEFAULT_CONFIG = {
     subtitle: "Spritz, sours, gin & tonics, y mocktails premium.",
     heroImage: "/media/bar-bg.jpg",
     highlight: "Happy Hour 17:00 - 20:00",
+    cardHeight: 300,
     items: [
       {
         image: "/media/drink1.jpg",
@@ -702,6 +704,7 @@ function applyConfig(config) {
   drinksSubtitleInput.value = config.drinks?.subtitle || "";
   drinksHighlightInput.value = config.drinks?.highlight || "";
   drinksHeroImageInput.value = config.drinks?.heroImage || "";
+  drinksCardHeightInput.value = config.drinks?.cardHeight || 300;
   renderDrinks(config.drinks?.items || []);
   renderSequence(config.sequence?.steps || [], config.sequence?.defaultDuration || 20);
   orientationSelect.value = config.orientation || "landscape";
@@ -745,6 +748,7 @@ const gatherConfig = () => ({
     subtitle: drinksSubtitleInput.value.trim(),
     highlight: drinksHighlightInput.value.trim(),
     heroImage: drinksHeroImageInput.value.trim() || "/media/bar-bg.jpg",
+    cardHeight: Number(drinksCardHeightInput.value) || 300,
     items: Array.from(drinksList.querySelectorAll(".drink-item")).map((node) => ({
       image: node.querySelector('input[name="image"]').value.trim(),
       badge: node.querySelector('input[name="badge"]').value.trim(),

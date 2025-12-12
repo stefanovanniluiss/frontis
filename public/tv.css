@@ -609,13 +609,16 @@ body.portrait #tv-root {
   position: relative;
   z-index: 1;
   display: grid;
-  gap: 18px;
+  gap: var(--drinks-card-gap, 18px);
   padding: clamp(18px, 2vw, 28px);
-  animation: vertLoopC 24s linear infinite;
+  animation: none;
+}
+.drinks-track-light.looping {
+  animation: vertLoopC var(--drinks-loop-duration, 24s) linear infinite;
 }
 .drinks-card-light {
   position: relative;
-  height: 300px;
+  height: var(--drinks-card-height, 300px);
   border-radius: 18px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -699,7 +702,7 @@ body.portrait #tv-root {
     transform: translateY(0);
   }
   to {
-    transform: translateY(-50%);
+    transform: translateY(calc(-1 * var(--drinks-loop-distance, 50%)));
   }
 }
 @media (max-width: 1100px) {
@@ -735,8 +738,5 @@ body.portrait #tv-root {
   }
   .drinks-carousel-light {
     height: 58vh;
-  }
-  .drinks-card-light {
-    height: 260px;
   }
 }
